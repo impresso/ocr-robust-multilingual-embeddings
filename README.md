@@ -1,12 +1,12 @@
-# Datasets, Resources and Models created as part of ACL2025 Findings paper [Cheap Character Noise for OCR-Robust Multilingual Embeddings](https://aclanthology.org/2025.coling-main.585/)
+# Datasets, Resources and Models from [Cheap Character Noise for OCR-Robust Multilingual Embeddings](https://aclanthology.org/2025.coling-main.585/) - <img height="24" alt="acl2025 vienna" src="https://github.com/user-attachments/assets/73357d43-7d70-4556-b448-f85da93c1e90" /> Findings 
 ![License: AGPLV3+](https://img.shields.io/badge/License-AGPLV3+-brightgreen.svg)
 
 ## Table of Contents
 
-- [Motivation](#overview)
+- [Motivation](#motivation)
 - [Repository Organization](#repository-organization)
-- [OCR-Robust Models - Huggingface](#models-huggingface)
-- [Released Datasets](#datasets)
+- [OCR Robust Models](#ocr-robust-models)
+- [Released Datasets](#released-datasets)
 - [Reproducing the Experiments](#reproducing-the-experiments)
 - [BibTeX Reference](#bibtex-reference)
 - [Further Support](#further-support)
@@ -44,6 +44,10 @@ The repository is organized as follows:
 │   └── Benchmark configuration for running the benchmark using Llama3.3 70b Q8 and 8b Q4
 ```
 
+## OCR Robust Models
+
+## Released Datasets
+
 ## Reproducing the Experiments
 I will update this soon! Pretend it's here already!
 
@@ -54,6 +58,10 @@ If you would like to cite this project, or the associated paper, here's a bibtex
 ```bibtex
 UPDATE ONCE IT'S AVAILABLE
 ```
+
+## Further Support
+In the future, we will work towards creating multilingual embedding models that are diversely robust. If you are interested in contributing or need access to any (not yet) released material, please reach out to andrianos.michail@cl.uzh.ch.
+
 ## About Impresso
 
 ### Impresso project
@@ -67,3 +75,9 @@ Copyright (C) 2025 The Impresso team.
 ### License
 
 This program is provided as open source under the [GNU Affero General Public License](https://github.com/impresso/impresso-pyindexation/blob/master/LICENSE) v3 or later.
+
+---
+
+<p align="center">
+  <img src="https://github.com/impresso/impresso.github.io/blob/master/assets/images/3x1--Yellow-Impresso-Black-on-White--transparent.png?raw=true" width="350" alt="Impresso Project Logo"/>
+</p>
