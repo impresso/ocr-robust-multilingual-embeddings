@@ -34,11 +34,21 @@ The repository is organized as follows:
 ## Released Datasets
 
 ### Evaluation Datasets
-Our newly introduced noisy variants of the CLSD WMT datasets are available within the noisy_evaluation_datasets directory.
+Our newly introduced noisy variants of the CLSD WMT datasets are available within the [noisy_evaluation_datasets](./noisy_evaluation_datasets) directory.
+
 ### Finetuning Datasets
-Our newly introduced noisy variants (realistic and stochastic) of the parallel texts of TED and X-News datasets are available within the noisy_finetuning_data directory.
+Our newly introduced noisy variants (realistic and stochastic) of the parallel texts of TED and X-News datasets are available within the [noisy_finetuning_data](./noisy_finetuning_data) directory.
 
 ### Other Evaluation Datasets
+
+More samples sfor Finetuning datasets and the other datasets (STS-X, Original CLSD, HistLux) used for evaluating the models are taken from other works are conveniently [linked](https://drive.google.com/file/d/1gydv66U99Gi5x7Uj_fJFLjZYEVC9EHsR/view?usp=sharing) together:
+
+
+For license on using these datasets, please see the original works:
+
+- **STS-X**: [paper](https://aclanthology.org/anthology-files/pdf/S/S17/S17-2001.pdf)
+- **CLSD**: [paper](https://arxiv.org/pdf/2502.08638)
+- **HistLux**: [paper](https://aclanthology.org/2025.latechclfl-1.26.pdf)
 
 ## Reproducing the Experiments
 I will update this soon! Pretend it's here already!
