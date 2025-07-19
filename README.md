@@ -19,29 +19,14 @@
 The repository is organized as follows:
 
 ```
-├── original_reproduction_code
-│   └── The initial version of the repository.
-├── datasets_no_results
-│   └── Contains the datasets used in the experiments, in a JSON format. Copied for every new benchmark
-├── models
-│   └── Empty models file used in the experiments.
-├── benchmarking.py
-│   └── Main benchmarking code, for running predictions on the datasets using specified methods.
-├── extract_results.py
-│   └── Script for extracting result of a benchmark.
-├── lm_studio_templates
-|   └──templates.py
-|      └──Sample functions for making prediction functions using LM Studio
-|   └──paper_methods.py
-|      └──methods used in the paper to run benchmarks using LM Studio
-|   └──l70b_methods.py
-|      └──methods to run the benchmark using Llama3.3 70b Q8 and 8b Q4
-├── logger.py
-│   └── Utility for managing logging: all events are logged both to stdout and to a local logs.log file.
-├── paper_config.json
-│   └── Benchmark configuration for the methods used in the paper.
-├── llama3_3_70b_config.json
-│   └── Benchmark configuration for running the benchmark using Llama3.3 70b Q8 and 8b Q4
+├── noisy_evaluation_datasets
+│   └── The noised evaluation datasets (CLSD - WMT19/21) produced.
+├── noisy_finetuning_data
+│   └── The 10K (per language) noised training samples (TED - X-News) used for fine-tuning the models. Includes both random and realistic OCR Noise variants.
+├── ocr_simulator
+│   └── The ocr_simulator library used to induce realistic ocr noise to texts.
+├── generate_random_character_noise_latin_alphabet
+│   └── The script to generate stochastically the character level noise used to fine-tune our models.
 ```
 
 ## OCR Robust Models
@@ -49,8 +34,9 @@ The repository is organized as follows:
 ## Released Datasets
 
 ### Evaluation Datasets
-
+Our newly introduced noisy variants of the CLSD WMT datasets are available within the noisy_evaluation_datasets directory.
 ### Finetuning Datasets
+Our newly introduced noisy variants (realistic and stochastic) of the parallel texts of TED and X-News datasets are available within the noisy_finetuning_data directory.
 
 ### Other Evaluation Datasets
 
