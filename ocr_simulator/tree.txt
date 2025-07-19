@@ -1,0 +1,927 @@
+
+├── analysis
+│   ├── 19_clean.csv
+│   ├── 19fr2.xlsx
+│   ├── 2019.xlsx
+│   ├── 2021.xlsx
+│   ├── 21fr2.xlsx
+│   ├── LaBSE2019.xlsx
+│   ├── LaBSE2021.xlsx
+│   ├── blackletter+distort_19.csv
+│   ├── blackletter+distort_21.csv
+│   ├── blackletter.csv
+│   ├── cercategory
+│   │   ├── adv_average_results.csv
+│   │   ├── adv_output_results.csv
+│   │   ├── bar.ipynb
+│   │   ├── blackletter_de.csv
+│   │   ├── distorted_fr.csv
+│   │   ├── french.csv
+│   │   ├── german.csv
+│   │   ├── noise_de.csv
+│   │   ├── noise_fr.csv
+│   │   ├── original_average_results.csv
+│   │   ├── original_output_results.csv
+│   │   ├── simple_de.csv
+│   │   └── simple_fr.csv
+│   ├── eva21.ipynb
+│   ├── evaluation.ipynb
+│   ├── n2
+│   │   ├── 2de_combined_corruptions.png
+│   │   ├── 2fr_combined_corruptions.png
+│   │   ├── allde_combined_corruptions_all_tags.png
+│   │   ├── allfr_combined_corruptions_all_tags.png
+│   │   ├── blackletter_ner_changes_cosine_de.csv
+│   │   ├── blackletter_ner_changes_cosine_de_NER.csv
+│   │   ├── blackletter_ner_changes_cosine_fr.csv
+│   │   ├── blackletter_ner_changes_cosine_fr_NER.csv
+│   │   ├── blackletter_ner_changes_de.csv
+│   │   ├── blackletter_ner_changes_fr.csv
+│   │   ├── blackletter_ner_de.csv
+│   │   ├── blackletter_ner_diff_de.csv
+│   │   ├── blackletter_ner_diff_fr.csv
+│   │   ├── blackletter_ner_filtered_de.csv
+│   │   ├── blackletter_ner_filtered_fr.csv
+│   │   ├── blackletter_ner_fr.csv
+│   │   ├── blackletter_no_change_in_ner_de.csv
+│   │   ├── blackletter_no_change_in_ner_fr.csv
+│   │   ├── de_combined_heatmap.png
+│   │   ├── fr_combined_heatmap.png
+│   │   ├── noise_ner_changes_cosine_de.csv
+│   │   ├── noise_ner_changes_cosine_de_NER.csv
+│   │   ├── noise_ner_changes_cosine_fr.csv
+│   │   ├── noise_ner_changes_cosine_fr_NER.csv
+│   │   ├── noise_ner_changes_de.csv
+│   │   ├── noise_ner_changes_fr.csv
+│   │   ├── noise_ner_de.csv
+│   │   ├── noise_ner_diff_de.csv
+│   │   ├── noise_ner_diff_fr.csv
+│   │   ├── noise_ner_filtered_de.csv
+│   │   ├── noise_ner_filtered_fr.csv
+│   │   ├── noise_ner_fr.csv
+│   │   ├── noise_no_change_in_ner_de.csv
+│   │   ├── noise_no_change_in_ner_fr.csv
+│   │   ├── simple_ner_changes_cosine_de.csv
+│   │   ├── simple_ner_changes_cosine_de_NER.csv
+│   │   ├── simple_ner_changes_cosine_fr.csv
+│   │   ├── simple_ner_changes_cosine_fr_NER.csv
+│   │   ├── simple_ner_changes_de.csv
+│   │   ├── simple_ner_changes_fr.csv
+│   │   ├── simple_ner_de.csv
+│   │   ├── simple_ner_diff_de.csv
+│   │   ├── simple_ner_diff_fr.csv
+│   │   ├── simple_ner_filtered_de.csv
+│   │   ├── simple_ner_filtered_fr.csv
+│   │   ├── simple_ner_fr.csv
+│   │   ├── simple_no_change_in_ner_de.csv
+│   │   ├── simple_no_change_in_ner_fr.csv
+│   │   ├── testde_combined_corruptions_all_tags.png
+│   │   ├── testde_combined_heatmap.png
+│   │   ├── testfr_combined_corruptions_all_tags.png
+│   │   ├── testfr_combined_heatmap.png
+│   │   ├── ttde_combined_corruptions_all_tags.png
+│   │   ├── ttfr_combined_corruptions_all_tags.png
+│   │   ├── tttde_combined_corruptions_all_tags.png
+│   │   └── tttfr_combined_corruptions_all_tags.png
+│   ├── ner
+│   │   ├── NER
+│   │   │   ├── 2de_combined_corruptions.png
+│   │   │   ├── 2de_combined_heatmap.png
+│   │   │   ├── 2fr_combined_corruptions.png
+│   │   │   ├── 2fr_combined_heatmap.png
+│   │   │   ├── blackletter_ner_changes_cosine_de_NER.png
+│   │   │   ├── blackletter_ner_changes_cosine_fr_NER.png
+│   │   │   ├── de_combined_corruptions.png
+│   │   │   ├── de_combined_heatmap.png
+│   │   │   ├── fr_combined_corruptions.png
+│   │   │   ├── fr_combined_heatmap.png
+│   │   │   ├── noise_ner_changes_cosine_de_NER.png
+│   │   │   ├── noise_ner_changes_cosine_fr_NER.png
+│   │   │   ├── simple_ner_changes_cosine_de_NER.png
+│   │   │   └── simple_ner_changes_cosine_fr_NER.png
+│   │   ├── blackletter_ner_changes_cosine_de.csv
+│   │   ├── blackletter_ner_changes_cosine_de_NER.csv
+│   │   ├── blackletter_ner_changes_cosine_fr.csv
+│   │   ├── blackletter_ner_changes_cosine_fr_NER.csv
+│   │   ├── blackletter_ner_changes_de.csv
+│   │   ├── blackletter_ner_changes_fr.csv
+│   │   ├── blackletter_ner_de.csv
+│   │   ├── blackletter_ner_diff_de.csv
+│   │   ├── blackletter_ner_diff_fr.csv
+│   │   ├── blackletter_ner_filtered_de.csv
+│   │   ├── blackletter_ner_filtered_fr.csv
+│   │   ├── blackletter_ner_fr.csv
+│   │   ├── blackletter_no_change_in_ner_de.csv
+│   │   ├── blackletter_no_change_in_ner_fr.csv
+│   │   ├── ner.ipynb
+│   │   ├── noise_ner_changes_cosine_de.csv
+│   │   ├── noise_ner_changes_cosine_de_NER.csv
+│   │   ├── noise_ner_changes_cosine_fr.csv
+│   │   ├── noise_ner_changes_cosine_fr_NER.csv
+│   │   ├── noise_ner_changes_de.csv
+│   │   ├── noise_ner_changes_fr.csv
+│   │   ├── noise_ner_de.csv
+│   │   ├── noise_ner_diff_de.csv
+│   │   ├── noise_ner_diff_fr.csv
+│   │   ├── noise_ner_filtered_de.csv
+│   │   ├── noise_ner_filtered_fr.csv
+│   │   ├── noise_ner_fr.csv
+│   │   ├── noise_no_change_in_ner_de.csv
+│   │   ├── noise_no_change_in_ner_fr.csv
+│   │   ├── simple_ner_changes_cosine_de.csv
+│   │   ├── simple_ner_changes_cosine_de_NER.csv
+│   │   ├── simple_ner_changes_cosine_fr.csv
+│   │   ├── simple_ner_changes_cosine_fr_NER.csv
+│   │   ├── simple_ner_changes_de.csv
+│   │   ├── simple_ner_changes_fr.csv
+│   │   ├── simple_ner_de.csv
+│   │   ├── simple_ner_diff_de.csv
+│   │   ├── simple_ner_diff_fr.csv
+│   │   ├── simple_ner_filtered_de.csv
+│   │   ├── simple_ner_filtered_fr.csv
+│   │   ├── simple_ner_fr.csv
+│   │   ├── simple_no_change_in_ner_de.csv
+│   │   ├── simple_no_change_in_ner_fr.csv
+│   │   └── test.png
+│   ├── noise.csv
+│   ├── noise_19.csv
+│   ├── noise_21.csv
+│   ├── original.csv
+│   ├── pos
+│   │   ├── POS
+│   │   │   ├── 2de_combined_corruptions.png
+│   │   │   ├── 2de_combined_heatmap.png
+│   │   │   ├── 2fr_combined_corruptions.png
+│   │   │   ├── 2fr_combined_heatmap.png
+│   │   │   ├── 3de_combined_corruptions.png
+│   │   │   ├── 3fr_combined_corruptions.png
+│   │   │   ├── blackletter_pos_changes_cosine_de_POS.png
+│   │   │   ├── blackletter_pos_changes_cosine_fr_POS.png
+│   │   │   ├── de_combined_corruptions.png
+│   │   │   ├── de_combined_heatmap.png
+│   │   │   ├── fr_combined_corruptions.png
+│   │   │   ├── fr_combined_heatmap.png
+│   │   │   ├── noise_pos_changes_cosine_de_POS.png
+│   │   │   ├── noise_pos_changes_cosine_fr_POS.png
+│   │   │   ├── simple_pos_changes_cosine_de_POS.png
+│   │   │   └── simple_pos_changes_cosine_fr_POS.png
+│   │   ├── blackletter&distort_differences_de.csv
+│   │   ├── blackletter&distort_differences_fr.csv
+│   │   ├── blackletter_differences_de.csv
+│   │   ├── blackletter_differences_fr.csv
+│   │   ├── blackletter_no_change_in_pos_de.csv
+│   │   ├── blackletter_no_change_in_pos_fr.csv
+│   │   ├── blackletter_pos_changes_cosine_de.csv
+│   │   ├── blackletter_pos_changes_cosine_de_POS.csv
+│   │   ├── blackletter_pos_changes_cosine_de_heatmap.png
+│   │   ├── blackletter_pos_changes_cosine_de_pos_confusion_matrix.csv
+│   │   ├── blackletter_pos_changes_cosine_de_summary.csv
+│   │   ├── blackletter_pos_changes_cosine_fr.csv
+│   │   ├── blackletter_pos_changes_cosine_fr_POS.csv
+│   │   ├── blackletter_pos_changes_cosine_fr_heatmap.png
+│   │   ├── blackletter_pos_changes_cosine_fr_pos_confusion_matrix.csv
+│   │   ├── blackletter_pos_changes_cosine_fr_summary.csv
+│   │   ├── blackletter_pos_changes_de.csv
+│   │   ├── blackletter_pos_changes_fr.csv
+│   │   ├── blackletter_pos_de.csv
+│   │   ├── blackletter_pos_diff_de.csv
+│   │   ├── blackletter_pos_diff_fr.csv
+│   │   ├── blackletter_pos_filtered_de.csv
+│   │   ├── blackletter_pos_filtered_fr.csv
+│   │   ├── blackletter_pos_fr.csv
+│   │   ├── de_combined_heatmap.png
+│   │   ├── fr_combined_heatmap.png
+│   │   ├── french_pos_transition_matrix.png
+│   │   ├── german_pos_transition_matrix.png
+│   │   ├── noise_differences_de.csv
+│   │   ├── noise_differences_fr.csv
+│   │   ├── noise_no_change_in_pos_de.csv
+│   │   ├── noise_no_change_in_pos_fr.csv
+│   │   ├── noise_pos_changes_cosine_de.csv
+│   │   ├── noise_pos_changes_cosine_de_POS.csv
+│   │   ├── noise_pos_changes_cosine_de_heatmap.png
+│   │   ├── noise_pos_changes_cosine_de_pos_confusion_matrix.csv
+│   │   ├── noise_pos_changes_cosine_de_summary.csv
+│   │   ├── noise_pos_changes_cosine_fr.csv
+│   │   ├── noise_pos_changes_cosine_fr_POS.csv
+│   │   ├── noise_pos_changes_cosine_fr_heatmap.png
+│   │   ├── noise_pos_changes_cosine_fr_pos_confusion_matrix.csv
+│   │   ├── noise_pos_changes_cosine_fr_summary.csv
+│   │   ├── noise_pos_changes_de.csv
+│   │   ├── noise_pos_changes_fr.csv
+│   │   ├── noise_pos_de.csv
+│   │   ├── noise_pos_diff_de.csv
+│   │   ├── noise_pos_diff_fr.csv
+│   │   ├── noise_pos_filtered_de.csv
+│   │   ├── noise_pos_filtered_fr.csv
+│   │   ├── noise_pos_fr.csv
+│   │   ├── pos.ipynb
+│   │   ├── pos_confusion_matrix.csv
+│   │   ├── pos_transition_matrix.png
+│   │   ├── simple_differences_de.csv
+│   │   ├── simple_differences_fr.csv
+│   │   ├── simple_no_change_in_pos_de.csv
+│   │   ├── simple_no_change_in_pos_fr.csv
+│   │   ├── simple_pos_changes_cosine_de.csv
+│   │   ├── simple_pos_changes_cosine_de_POS.csv
+│   │   ├── simple_pos_changes_cosine_de_heatmap.png
+│   │   ├── simple_pos_changes_cosine_de_pos_confusion_matrix.csv
+│   │   ├── simple_pos_changes_cosine_de_summary.csv
+│   │   ├── simple_pos_changes_cosine_fr.csv
+│   │   ├── simple_pos_changes_cosine_fr_POS.csv
+│   │   ├── simple_pos_changes_cosine_fr_heatmap.png
+│   │   ├── simple_pos_changes_cosine_fr_pos_confusion_matrix.csv
+│   │   ├── simple_pos_changes_cosine_fr_summary.csv
+│   │   ├── simple_pos_changes_de.csv
+│   │   ├── simple_pos_changes_fr.csv
+│   │   ├── simple_pos_de.csv
+│   │   ├── simple_pos_diff_de.csv
+│   │   ├── simple_pos_diff_fr.csv
+│   │   ├── simple_pos_filtered_de.csv
+│   │   ├── simple_pos_filtered_fr.csv
+│   │   ├── simple_pos_fr.csv
+│   │   └── simplede.png
+│   ├── simple.csv
+│   ├── simple_19.csv
+│   ├── simple_21.csv
+│   ├── subtoken
+│   │   ├── 2metrics_plot_french.png
+│   │   ├── 2metrics_plot_german.png
+│   │   ├── 3metrics_plot_french.png
+│   │   ├── 3metrics_plot_german.png
+│   │   ├── french_19_blackletter.csv
+│   │   ├── french_19_noise.csv
+│   │   ├── french_19_simple.csv
+│   │   ├── french_21_blackletter.csv
+│   │   ├── french_21_noise.csv
+│   │   ├── french_21_simple.csv
+│   │   ├── french_blackletter.csv
+│   │   ├── french_noise.csv
+│   │   ├── french_salt_and_pepper.csv
+│   │   ├── french_simple.csv
+│   │   ├── french_simple_noise.csv
+│   │   ├── german_19_blackletter.csv
+│   │   ├── german_19_noise.csv
+│   │   ├── german_19_simple.csv
+│   │   ├── german_21_blackletter.csv
+│   │   ├── german_21_noise.csv
+│   │   ├── german_21_simple.csv
+│   │   ├── german_blackletter.csv
+│   │   ├── german_noise.csv
+│   │   ├── german_salt_and_pepper.csv
+│   │   ├── german_simple.csv
+│   │   ├── german_simple_noise.csv
+│   │   ├── metrics_plot_french.png
+│   │   ├── metrics_plot_french_2019.png
+│   │   ├── metrics_plot_french_2021.png
+│   │   ├── metrics_plot_german.png
+│   │   ├── metrics_plot_german_2019.png
+│   │   ├── metrics_plot_german_2021.png
+│   │   └── subtoken.ipynb
+│   ├── test.py
+│   ├── test2
+│   │   ├── 4de_combined_heatmap.png
+│   │   ├── 4fr_combined_heatmap.png
+│   │   ├── blackletter_differences_de.csv
+│   │   ├── blackletter_differences_fr.csv
+│   │   ├── blackletter_no_change_in_pos_de.csv
+│   │   ├── blackletter_no_change_in_pos_fr.csv
+│   │   ├── blackletter_pos_changes_cosine_de.csv
+│   │   ├── blackletter_pos_changes_cosine_de_POS.csv
+│   │   ├── blackletter_pos_changes_cosine_fr.csv
+│   │   ├── blackletter_pos_changes_cosine_fr_POS.csv
+│   │   ├── blackletter_pos_changes_de.csv
+│   │   ├── blackletter_pos_changes_fr.csv
+│   │   ├── blackletter_pos_de.csv
+│   │   ├── blackletter_pos_diff_de.csv
+│   │   ├── blackletter_pos_diff_fr.csv
+│   │   ├── blackletter_pos_filtered_de.csv
+│   │   ├── blackletter_pos_filtered_fr.csv
+│   │   ├── blackletter_pos_fr.csv
+│   │   ├── de_combined_corruptions.png
+│   │   ├── de_combined_heatmap.png
+│   │   ├── filtered_de_combined_heatmap.png
+│   │   ├── filtered_fr_combined_heatmap.png
+│   │   ├── fr_combined_corruptions.png
+│   │   ├── fr_combined_heatmap.png
+│   │   ├── noise_differences_de.csv
+│   │   ├── noise_differences_fr.csv
+│   │   ├── noise_no_change_in_pos_de.csv
+│   │   ├── noise_no_change_in_pos_fr.csv
+│   │   ├── noise_pos_changes_cosine_de.csv
+│   │   ├── noise_pos_changes_cosine_de_POS.csv
+│   │   ├── noise_pos_changes_cosine_fr.csv
+│   │   ├── noise_pos_changes_cosine_fr_POS.csv
+│   │   ├── noise_pos_changes_de.csv
+│   │   ├── noise_pos_changes_fr.csv
+│   │   ├── noise_pos_de.csv
+│   │   ├── noise_pos_diff_de.csv
+│   │   ├── noise_pos_diff_fr.csv
+│   │   ├── noise_pos_filtered_de.csv
+│   │   ├── noise_pos_filtered_fr.csv
+│   │   ├── noise_pos_fr.csv
+│   │   ├── simple_differences_de.csv
+│   │   ├── simple_differences_fr.csv
+│   │   ├── simple_no_change_in_pos_de.csv
+│   │   ├── simple_no_change_in_pos_fr.csv
+│   │   ├── simple_pos_changes_cosine_de.csv
+│   │   ├── simple_pos_changes_cosine_de_POS.csv
+│   │   ├── simple_pos_changes_cosine_fr.csv
+│   │   ├── simple_pos_changes_cosine_fr_POS.csv
+│   │   ├── simple_pos_changes_de.csv
+│   │   ├── simple_pos_changes_fr.csv
+│   │   ├── simple_pos_de.csv
+│   │   ├── simple_pos_diff_de.csv
+│   │   ├── simple_pos_diff_fr.csv
+│   │   ├── simple_pos_filtered_de.csv
+│   │   ├── simple_pos_filtered_fr.csv
+│   │   ├── simple_pos_fr.csv
+│   │   ├── tde_combined_corruptions.png
+│   │   ├── testde_combined_heatmap.png
+│   │   ├── testde_filtered_combined_heatmap.png
+│   │   ├── testfr_combined_heatmap.png
+│   │   ├── testfr_filtered_combined_heatmap.png
+│   │   ├── tfr_combined_corruptions.png
+│   │   ├── ttde_combined_corruptions_all_tags.png
+│   │   └── ttfr_combined_corruptions_all_tags.png
+│   ├── wmt2019_adversarial_dataset.csv
+│   └── wmt2021_adversarial_dataset.csv
+├── dataset_test
+│   ├── 19_boxplot_de.png
+│   ├── 19_boxplot_fr.png
+│   ├── matrix.png
+│   ├── output.png
+│   ├── plot.png
+│   ├── random_noise
+│   │   ├── 19_corrupted1.csv
+│   │   ├── 19_corrupted2.csv
+│   │   ├── 19_corrupted3.csv
+│   │   ├── French_random_noise.png
+│   │   ├── German_random_noise.png
+│   │   ├── adv.ipynb
+│   │   ├── cer_plot.ipynb
+│   │   ├── combined_random_noise.png
+│   │   ├── comparison_results.xlsx
+│   │   ├── model.ipynb
+│   │   ├── wmt2019_adversarial_dataset.csv
+│   │   └── wmt2021_adversarial_dataset.csv
+│   ├── reconstructed_data
+│   │   ├── 19_blackletter.csv
+│   │   ├── 19_blackletter_differences_de.csv
+│   │   ├── 19_blackletter_differences_fr.csv
+│   │   ├── 19_blackletter_ner_changes_cosine_de.csv
+│   │   ├── 19_blackletter_ner_changes_cosine_deNER.csv
+│   │   ├── 19_blackletter_ner_changes_cosine_deNER.png
+│   │   ├── 19_blackletter_ner_changes_cosine_de_boxplot.png
+│   │   ├── 19_blackletter_ner_changes_cosine_de_ner_detailed.csv
+│   │   ├── 19_blackletter_ner_changes_cosine_de_ner_summary.csv
+│   │   ├── 19_blackletter_ner_changes_cosine_fr.csv
+│   │   ├── 19_blackletter_ner_changes_cosine_frNER.csv
+│   │   ├── 19_blackletter_ner_changes_cosine_frNER.png
+│   │   ├── 19_blackletter_ner_changes_cosine_fr_boxplot.png
+│   │   ├── 19_blackletter_ner_changes_cosine_fr_ner_detailed.csv
+│   │   ├── 19_blackletter_ner_changes_cosine_fr_ner_summary.csv
+│   │   ├── 19_blackletter_ner_changes_de.csv
+│   │   ├── 19_blackletter_ner_changes_fr.csv
+│   │   ├── 19_blackletter_ner_de.csv
+│   │   ├── 19_blackletter_ner_diff_de.csv
+│   │   ├── 19_blackletter_ner_diff_fr.csv
+│   │   ├── 19_blackletter_ner_filtered_de.csv
+│   │   ├── 19_blackletter_ner_filtered_fr.csv
+│   │   ├── 19_blackletter_ner_fr.csv
+│   │   ├── 19_blackletter_no_change_in_ner_de.csv
+│   │   ├── 19_blackletter_no_change_in_ner_fr.csv
+│   │   ├── 19_blackletter_no_change_in_pos_de.csv
+│   │   ├── 19_blackletter_no_change_in_pos_fr.csv
+│   │   ├── 19_blackletter_pos_changes_cosine_de.csv
+│   │   ├── 19_blackletter_pos_changes_cosine_de_POS.csv
+│   │   ├── 19_blackletter_pos_changes_cosine_de_POS.png
+│   │   ├── 19_blackletter_pos_changes_cosine_de_boxplot.png
+│   │   ├── 19_blackletter_pos_changes_cosine_de_pos_detailed.csv
+│   │   ├── 19_blackletter_pos_changes_cosine_de_summary.csv
+│   │   ├── 19_blackletter_pos_changes_cosine_fr.csv
+│   │   ├── 19_blackletter_pos_changes_cosine_fr_POS.csv
+│   │   ├── 19_blackletter_pos_changes_cosine_fr_POS.png
+│   │   ├── 19_blackletter_pos_changes_cosine_fr_boxplot.png
+│   │   ├── 19_blackletter_pos_changes_cosine_fr_pos_detailed.csv
+│   │   ├── 19_blackletter_pos_changes_cosine_fr_summary.csv
+│   │   ├── 19_blackletter_pos_changes_de.csv
+│   │   ├── 19_blackletter_pos_changes_fr.csv
+│   │   ├── 19_blackletter_pos_de.csv
+│   │   ├── 19_blackletter_pos_diff_de.csv
+│   │   ├── 19_blackletter_pos_diff_fr.csv
+│   │   ├── 19_blackletter_pos_filtered_de.csv
+│   │   ├── 19_blackletter_pos_filtered_fr.csv
+│   │   ├── 19_blackletter_pos_fr.csv
+│   │   ├── 19_salt_pepper.csv
+│   │   ├── 19_salt_pepper_differences_de.csv
+│   │   ├── 19_salt_pepper_differences_fr.csv
+│   │   ├── 19_salt_pepper_ner_changes_cosine_de.csv
+│   │   ├── 19_salt_pepper_ner_changes_cosine_deNER.csv
+│   │   ├── 19_salt_pepper_ner_changes_cosine_deNER.png
+│   │   ├── 19_salt_pepper_ner_changes_cosine_de_boxplot.png
+│   │   ├── 19_salt_pepper_ner_changes_cosine_de_ner_detailed.csv
+│   │   ├── 19_salt_pepper_ner_changes_cosine_de_ner_summary.csv
+│   │   ├── 19_salt_pepper_ner_changes_cosine_fr.csv
+│   │   ├── 19_salt_pepper_ner_changes_cosine_frNER.csv
+│   │   ├── 19_salt_pepper_ner_changes_cosine_frNER.png
+│   │   ├── 19_salt_pepper_ner_changes_cosine_fr_boxplot.png
+│   │   ├── 19_salt_pepper_ner_changes_cosine_fr_ner_detailed.csv
+│   │   ├── 19_salt_pepper_ner_changes_cosine_fr_ner_summary.csv
+│   │   ├── 19_salt_pepper_ner_changes_de.csv
+│   │   ├── 19_salt_pepper_ner_changes_fr.csv
+│   │   ├── 19_salt_pepper_ner_de.csv
+│   │   ├── 19_salt_pepper_ner_diff_de.csv
+│   │   ├── 19_salt_pepper_ner_diff_fr.csv
+│   │   ├── 19_salt_pepper_ner_filtered_de.csv
+│   │   ├── 19_salt_pepper_ner_filtered_fr.csv
+│   │   ├── 19_salt_pepper_ner_fr.csv
+│   │   ├── 19_salt_pepper_no_change_in_ner_de.csv
+│   │   ├── 19_salt_pepper_no_change_in_ner_fr.csv
+│   │   ├── 19_salt_pepper_no_change_in_pos_de.csv
+│   │   ├── 19_salt_pepper_no_change_in_pos_fr.csv
+│   │   ├── 19_salt_pepper_pos_changes_cosine_de.csv
+│   │   ├── 19_salt_pepper_pos_changes_cosine_de_POS.csv
+│   │   ├── 19_salt_pepper_pos_changes_cosine_de_POS.png
+│   │   ├── 19_salt_pepper_pos_changes_cosine_de_boxplot.png
+│   │   ├── 19_salt_pepper_pos_changes_cosine_de_pos_detailed.csv
+│   │   ├── 19_salt_pepper_pos_changes_cosine_de_summary.csv
+│   │   ├── 19_salt_pepper_pos_changes_cosine_fr.csv
+│   │   ├── 19_salt_pepper_pos_changes_cosine_fr_POS.csv
+│   │   ├── 19_salt_pepper_pos_changes_cosine_fr_POS.png
+│   │   ├── 19_salt_pepper_pos_changes_cosine_fr_boxplot.png
+│   │   ├── 19_salt_pepper_pos_changes_cosine_fr_pos_detailed.csv
+│   │   ├── 19_salt_pepper_pos_changes_cosine_fr_summary.csv
+│   │   ├── 19_salt_pepper_pos_changes_de.csv
+│   │   ├── 19_salt_pepper_pos_changes_fr.csv
+│   │   ├── 19_salt_pepper_pos_de.csv
+│   │   ├── 19_salt_pepper_pos_diff_de.csv
+│   │   ├── 19_salt_pepper_pos_diff_fr.csv
+│   │   ├── 19_salt_pepper_pos_filtered_de.csv
+│   │   ├── 19_salt_pepper_pos_filtered_fr.csv
+│   │   ├── 19_salt_pepper_pos_fr.csv
+│   │   ├── 19_simple_noise.csv
+│   │   ├── 19_simple_noise_differences_de.csv
+│   │   ├── 19_simple_noise_differences_fr.csv
+│   │   ├── 19_simple_noise_ner_changes_cosine_de.csv
+│   │   ├── 19_simple_noise_ner_changes_cosine_deNER.csv
+│   │   ├── 19_simple_noise_ner_changes_cosine_deNER.png
+│   │   ├── 19_simple_noise_ner_changes_cosine_de_boxplot.png
+│   │   ├── 19_simple_noise_ner_changes_cosine_de_ner_detailed.csv
+│   │   ├── 19_simple_noise_ner_changes_cosine_de_ner_summary.csv
+│   │   ├── 19_simple_noise_ner_changes_cosine_fr.csv
+│   │   ├── 19_simple_noise_ner_changes_cosine_frNER.csv
+│   │   ├── 19_simple_noise_ner_changes_cosine_frNER.png
+│   │   ├── 19_simple_noise_ner_changes_cosine_fr_boxplot.png
+│   │   ├── 19_simple_noise_ner_changes_cosine_fr_ner_detailed.csv
+│   │   ├── 19_simple_noise_ner_changes_cosine_fr_ner_summary.csv
+│   │   ├── 19_simple_noise_ner_changes_de.csv
+│   │   ├── 19_simple_noise_ner_changes_fr.csv
+│   │   ├── 19_simple_noise_ner_de.csv
+│   │   ├── 19_simple_noise_ner_diff_de.csv
+│   │   ├── 19_simple_noise_ner_diff_fr.csv
+│   │   ├── 19_simple_noise_ner_filtered_de.csv
+│   │   ├── 19_simple_noise_ner_filtered_fr.csv
+│   │   ├── 19_simple_noise_ner_fr.csv
+│   │   ├── 19_simple_noise_no_change_in_ner_de.csv
+│   │   ├── 19_simple_noise_no_change_in_ner_fr.csv
+│   │   ├── 19_simple_noise_no_change_in_pos_de.csv
+│   │   ├── 19_simple_noise_no_change_in_pos_fr.csv
+│   │   ├── 19_simple_noise_pos_changes_cosine_de.csv
+│   │   ├── 19_simple_noise_pos_changes_cosine_de_POS.csv
+│   │   ├── 19_simple_noise_pos_changes_cosine_de_POS.png
+│   │   ├── 19_simple_noise_pos_changes_cosine_de_boxplot.png
+│   │   ├── 19_simple_noise_pos_changes_cosine_de_pos_confusion_matrix.csv
+│   │   ├── 19_simple_noise_pos_changes_cosine_de_pos_detailed.csv
+│   │   ├── 19_simple_noise_pos_changes_cosine_de_summary.csv
+│   │   ├── 19_simple_noise_pos_changes_cosine_fr.csv
+│   │   ├── 19_simple_noise_pos_changes_cosine_fr_POS.csv
+│   │   ├── 19_simple_noise_pos_changes_cosine_fr_POS.png
+│   │   ├── 19_simple_noise_pos_changes_cosine_fr_boxplot.png
+│   │   ├── 19_simple_noise_pos_changes_cosine_fr_pos_detailed.csv
+│   │   ├── 19_simple_noise_pos_changes_cosine_fr_summary.csv
+│   │   ├── 19_simple_noise_pos_changes_de.csv
+│   │   ├── 19_simple_noise_pos_changes_fr.csv
+│   │   ├── 19_simple_noise_pos_de.csv
+│   │   ├── 19_simple_noise_pos_diff_de.csv
+│   │   ├── 19_simple_noise_pos_diff_fr.csv
+│   │   ├── 19_simple_noise_pos_filtered_de.csv
+│   │   ├── 19_simple_noise_pos_filtered_fr.csv
+│   │   ├── 19_simple_noise_pos_fr.csv
+│   │   ├── 21_blackletter.csv
+│   │   ├── 21_blackletter_differences_de.csv
+│   │   ├── 21_blackletter_differences_fr.csv
+│   │   ├── 21_blackletter_ner_changes_cosine_de.csv
+│   │   ├── 21_blackletter_ner_changes_cosine_deNER.csv
+│   │   ├── 21_blackletter_ner_changes_cosine_deNER.png
+│   │   ├── 21_blackletter_ner_changes_cosine_de_boxplot.png
+│   │   ├── 21_blackletter_ner_changes_cosine_de_ner_detailed.csv
+│   │   ├── 21_blackletter_ner_changes_cosine_de_ner_summary.csv
+│   │   ├── 21_blackletter_ner_changes_cosine_fr.csv
+│   │   ├── 21_blackletter_ner_changes_cosine_frNER.csv
+│   │   ├── 21_blackletter_ner_changes_cosine_frNER.png
+│   │   ├── 21_blackletter_ner_changes_cosine_fr_boxplot.png
+│   │   ├── 21_blackletter_ner_changes_cosine_fr_ner_detailed.csv
+│   │   ├── 21_blackletter_ner_changes_cosine_fr_ner_summary.csv
+│   │   ├── 21_blackletter_ner_changes_de.csv
+│   │   ├── 21_blackletter_ner_changes_fr.csv
+│   │   ├── 21_blackletter_ner_de.csv
+│   │   ├── 21_blackletter_ner_diff_de.csv
+│   │   ├── 21_blackletter_ner_diff_fr.csv
+│   │   ├── 21_blackletter_ner_filtered_de.csv
+│   │   ├── 21_blackletter_ner_filtered_fr.csv
+│   │   ├── 21_blackletter_ner_fr.csv
+│   │   ├── 21_blackletter_no_change_in_ner_de.csv
+│   │   ├── 21_blackletter_no_change_in_ner_fr.csv
+│   │   ├── 21_blackletter_no_change_in_pos_de.csv
+│   │   ├── 21_blackletter_no_change_in_pos_fr.csv
+│   │   ├── 21_blackletter_pos_changes_cosine_de.csv
+│   │   ├── 21_blackletter_pos_changes_cosine_de_POS.csv
+│   │   ├── 21_blackletter_pos_changes_cosine_de_POS.png
+│   │   ├── 21_blackletter_pos_changes_cosine_de_boxplot.png
+│   │   ├── 21_blackletter_pos_changes_cosine_de_pos_detailed.csv
+│   │   ├── 21_blackletter_pos_changes_cosine_de_summary.csv
+│   │   ├── 21_blackletter_pos_changes_cosine_fr.csv
+│   │   ├── 21_blackletter_pos_changes_cosine_fr_POS.csv
+│   │   ├── 21_blackletter_pos_changes_cosine_fr_POS.png
+│   │   ├── 21_blackletter_pos_changes_cosine_fr_boxplot.png
+│   │   ├── 21_blackletter_pos_changes_cosine_fr_pos_detailed.csv
+│   │   ├── 21_blackletter_pos_changes_cosine_fr_summary.csv
+│   │   ├── 21_blackletter_pos_changes_de.csv
+│   │   ├── 21_blackletter_pos_changes_fr.csv
+│   │   ├── 21_blackletter_pos_de.csv
+│   │   ├── 21_blackletter_pos_diff_de.csv
+│   │   ├── 21_blackletter_pos_diff_fr.csv
+│   │   ├── 21_blackletter_pos_filtered_de.csv
+│   │   ├── 21_blackletter_pos_filtered_fr.csv
+│   │   ├── 21_blackletter_pos_fr.csv
+│   │   ├── 21_salt_pepper.csv
+│   │   ├── 21_salt_pepper_differences_de.csv
+│   │   ├── 21_salt_pepper_differences_fr.csv
+│   │   ├── 21_salt_pepper_ner_changes_cosine_de.csv
+│   │   ├── 21_salt_pepper_ner_changes_cosine_deNER.csv
+│   │   ├── 21_salt_pepper_ner_changes_cosine_deNER.png
+│   │   ├── 21_salt_pepper_ner_changes_cosine_de_boxplot.png
+│   │   ├── 21_salt_pepper_ner_changes_cosine_de_ner_detailed.csv
+│   │   ├── 21_salt_pepper_ner_changes_cosine_de_ner_summary.csv
+│   │   ├── 21_salt_pepper_ner_changes_cosine_fr.csv
+│   │   ├── 21_salt_pepper_ner_changes_cosine_frNER.csv
+│   │   ├── 21_salt_pepper_ner_changes_cosine_frNER.png
+│   │   ├── 21_salt_pepper_ner_changes_cosine_fr_boxplot.png
+│   │   ├── 21_salt_pepper_ner_changes_cosine_fr_ner_detailed.csv
+│   │   ├── 21_salt_pepper_ner_changes_cosine_fr_ner_summary.csv
+│   │   ├── 21_salt_pepper_ner_changes_de.csv
+│   │   ├── 21_salt_pepper_ner_changes_fr.csv
+│   │   ├── 21_salt_pepper_ner_de.csv
+│   │   ├── 21_salt_pepper_ner_diff_de.csv
+│   │   ├── 21_salt_pepper_ner_diff_fr.csv
+│   │   ├── 21_salt_pepper_ner_filtered_de.csv
+│   │   ├── 21_salt_pepper_ner_filtered_fr.csv
+│   │   ├── 21_salt_pepper_ner_fr.csv
+│   │   ├── 21_salt_pepper_no_change_in_ner_de.csv
+│   │   ├── 21_salt_pepper_no_change_in_ner_fr.csv
+│   │   ├── 21_salt_pepper_no_change_in_pos_de.csv
+│   │   ├── 21_salt_pepper_no_change_in_pos_fr.csv
+│   │   ├── 21_salt_pepper_pos_changes_cosine_de.csv
+│   │   ├── 21_salt_pepper_pos_changes_cosine_de_POS.csv
+│   │   ├── 21_salt_pepper_pos_changes_cosine_de_POS.png
+│   │   ├── 21_salt_pepper_pos_changes_cosine_de_boxplot.png
+│   │   ├── 21_salt_pepper_pos_changes_cosine_de_pos_detailed.csv
+│   │   ├── 21_salt_pepper_pos_changes_cosine_de_summary.csv
+│   │   ├── 21_salt_pepper_pos_changes_cosine_fr.csv
+│   │   ├── 21_salt_pepper_pos_changes_cosine_fr_POS.csv
+│   │   ├── 21_salt_pepper_pos_changes_cosine_fr_POS.png
+│   │   ├── 21_salt_pepper_pos_changes_cosine_fr_boxplot.png
+│   │   ├── 21_salt_pepper_pos_changes_cosine_fr_pos_detailed.csv
+│   │   ├── 21_salt_pepper_pos_changes_cosine_fr_summary.csv
+│   │   ├── 21_salt_pepper_pos_changes_de.csv
+│   │   ├── 21_salt_pepper_pos_changes_fr.csv
+│   │   ├── 21_salt_pepper_pos_de.csv
+│   │   ├── 21_salt_pepper_pos_diff_de.csv
+│   │   ├── 21_salt_pepper_pos_diff_fr.csv
+│   │   ├── 21_salt_pepper_pos_filtered_de.csv
+│   │   ├── 21_salt_pepper_pos_filtered_fr.csv
+│   │   ├── 21_salt_pepper_pos_fr.csv
+│   │   ├── 21_simple_noise.csv
+│   │   ├── 21_simple_noise_differences_de.csv
+│   │   ├── 21_simple_noise_differences_fr.csv
+│   │   ├── 21_simple_noise_ner_changes_cosine_de.csv
+│   │   ├── 21_simple_noise_ner_changes_cosine_deNER.csv
+│   │   ├── 21_simple_noise_ner_changes_cosine_deNER.png
+│   │   ├── 21_simple_noise_ner_changes_cosine_de_boxplot.png
+│   │   ├── 21_simple_noise_ner_changes_cosine_de_ner_detailed.csv
+│   │   ├── 21_simple_noise_ner_changes_cosine_de_ner_summary.csv
+│   │   ├── 21_simple_noise_ner_changes_cosine_fr.csv
+│   │   ├── 21_simple_noise_ner_changes_cosine_frNER.csv
+│   │   ├── 21_simple_noise_ner_changes_cosine_frNER.png
+│   │   ├── 21_simple_noise_ner_changes_cosine_fr_boxplot.png
+│   │   ├── 21_simple_noise_ner_changes_cosine_fr_ner_detailed.csv
+│   │   ├── 21_simple_noise_ner_changes_cosine_fr_ner_summary.csv
+│   │   ├── 21_simple_noise_ner_changes_de.csv
+│   │   ├── 21_simple_noise_ner_changes_fr.csv
+│   │   ├── 21_simple_noise_ner_de.csv
+│   │   ├── 21_simple_noise_ner_diff_de.csv
+│   │   ├── 21_simple_noise_ner_diff_fr.csv
+│   │   ├── 21_simple_noise_ner_filtered_de.csv
+│   │   ├── 21_simple_noise_ner_filtered_fr.csv
+│   │   ├── 21_simple_noise_ner_fr.csv
+│   │   ├── 21_simple_noise_no_change_in_ner_de.csv
+│   │   ├── 21_simple_noise_no_change_in_ner_fr.csv
+│   │   ├── 21_simple_noise_no_change_in_pos_de.csv
+│   │   ├── 21_simple_noise_no_change_in_pos_fr.csv
+│   │   ├── 21_simple_noise_pos_changes_cosine_de.csv
+│   │   ├── 21_simple_noise_pos_changes_cosine_de_POS.csv
+│   │   ├── 21_simple_noise_pos_changes_cosine_de_POS.png
+│   │   ├── 21_simple_noise_pos_changes_cosine_de_boxplot.png
+│   │   ├── 21_simple_noise_pos_changes_cosine_de_pos_detailed.csv
+│   │   ├── 21_simple_noise_pos_changes_cosine_de_summary.csv
+│   │   ├── 21_simple_noise_pos_changes_cosine_fr.csv
+│   │   ├── 21_simple_noise_pos_changes_cosine_fr_POS.csv
+│   │   ├── 21_simple_noise_pos_changes_cosine_fr_POS.png
+│   │   ├── 21_simple_noise_pos_changes_cosine_fr_boxplot.png
+│   │   ├── 21_simple_noise_pos_changes_cosine_fr_pos_detailed.csv
+│   │   ├── 21_simple_noise_pos_changes_cosine_fr_summary.csv
+│   │   ├── 21_simple_noise_pos_changes_de.csv
+│   │   ├── 21_simple_noise_pos_changes_fr.csv
+│   │   ├── 21_simple_noise_pos_de.csv
+│   │   ├── 21_simple_noise_pos_diff_de.csv
+│   │   ├── 21_simple_noise_pos_diff_fr.csv
+│   │   ├── 21_simple_noise_pos_filtered_de.csv
+│   │   ├── 21_simple_noise_pos_filtered_fr.csv
+│   │   ├── 21_simple_noise_pos_fr.csv
+│   │   ├── NER
+│   │   │   ├── 19_blackletter_ner_changes_cosine_deNER.png
+│   │   │   ├── 19_blackletter_ner_changes_cosine_frNER.png
+│   │   │   ├── 19_salt_pepper_ner_changes_cosine_deNER.png
+│   │   │   ├── 19_salt_pepper_ner_changes_cosine_frNER.png
+│   │   │   ├── 19_simple_noise_ner_changes_cosine_deNER.png
+│   │   │   ├── 19_simple_noise_ner_changes_cosine_frNER.png
+│   │   │   ├── 21_blackletter_ner_changes_cosine_deNER.png
+│   │   │   ├── 21_blackletter_ner_changes_cosine_frNER.png
+│   │   │   ├── 21_salt_pepper_ner_changes_cosine_deNER.png
+│   │   │   ├── 21_salt_pepper_ner_changes_cosine_frNER.png
+│   │   │   ├── 21_simple_noise_ner_changes_cosine_deNER.png
+│   │   │   └── 21_simple_noise_ner_changes_cosine_frNER.png
+│   │   ├── NER (1).ipynb
+│   │   ├── POS
+│   │   │   ├── 19_blackletter_pos_changes_cosine_de_POS.png
+│   │   │   ├── 19_blackletter_pos_changes_cosine_fr_POS.png
+│   │   │   ├── 19_salt_pepper_pos_changes_cosine_de_POS.png
+│   │   │   ├── 19_salt_pepper_pos_changes_cosine_fr_POS.png
+│   │   │   ├── 19_simple_noise_pos_changes_cosine_de_POS.png
+│   │   │   ├── 19_simple_noise_pos_changes_cosine_fr_POS.png
+│   │   │   ├── 21_blackletter_pos_changes_cosine_de_POS.png
+│   │   │   ├── 21_blackletter_pos_changes_cosine_fr_POS.png
+│   │   │   ├── 21_salt_pepper_pos_changes_cosine_de_POS.png
+│   │   │   ├── 21_salt_pepper_pos_changes_cosine_fr_POS.png
+│   │   │   ├── 21_simple_noise_pos_changes_cosine_de_POS.png
+│   │   │   └── 21_simple_noise_pos_changes_cosine_fr_POS.png
+│   │   ├── alibaba_model.xlsx
+│   │   ├── clean.xlsx
+│   │   ├── clean2.xlsx
+│   │   ├── heatmap.png
+│   │   ├── pos.ipynb
+│   │   ├── pos_confusion_matrix.csv
+│   │   ├── pos_confusion_matrix_plot.png
+│   │   ├── wmt2019_adversarial_dataset.csv
+│   │   └── wmt2021_adversarial_dataset.csv
+│   └── subtoken
+│       ├── 19_blackletter.csv
+│       ├── 19_salt_pepper.csv
+│       ├── 19_simple_noise.csv
+│       ├── 21_blackletter.csv
+│       ├── 21_salt_pepper.csv
+│       ├── 21_simple_noise.csv
+│       ├── Boxplot_french_19.png
+│       ├── Boxplot_french_21.png
+│       ├── Boxplot_german_19.png
+│       ├── Boxplot_german_21.png
+│       ├── french_Metric_19.csv
+│       ├── french_Metric_21.csv
+│       ├── french_subtokenization_details_19.csv
+│       ├── french_subtokenization_details_21.csv
+│       ├── german_Metric_19.csv
+│       ├── german_Metric_21.csv
+│       ├── german_subtokenization_details_19.csv
+│       ├── german_subtokenization_details_21.csv
+│       ├── set_Violin_french_19.png
+│       ├── set_Violin_french_21.png
+│       ├── set_Violin_german_19.png
+│       ├── set_Violin_german_21.png
+│       ├── subtoken.ipynb
+│       ├── wmt2019_adversarial_dataset.csv
+│       └── wmt2021_adversarial_dataset.csv
+├── experiment
+│   ├── 10.xlsx
+│   ├── 10av.xlsx
+│   ├── 10k123.xlsx
+│   ├── 10kseed42.xlsx
+│   ├── 2fine-tuned-gte-wmtmono-blackletter+distort-seed42-label1
+│   │   ├── 1_Pooling
+│   │   │   └── config.json
+│   │   ├── 2_Normalize
+│   │   ├── README.md
+│   │   ├── config.json
+│   │   ├── config_sentence_transformers.json
+│   │   ├── model.safetensors
+│   │   ├── modules.json
+│   │   ├── sentence_bert_config.json
+│   │   ├── special_tokens_map.json
+│   │   ├── tokenizer.json
+│   │   └── tokenizer_config.json
+│   ├── 2fine-tuned-gte-wmtmono-mixed1-seed42-label1
+│   │   ├── 1_Pooling
+│   │   │   └── config.json
+│   │   ├── 2_Normalize
+│   │   ├── README.md
+│   │   ├── config.json
+│   │   ├── config_sentence_transformers.json
+│   │   ├── model.safetensors
+│   │   ├── modules.json
+│   │   ├── sentence_bert_config.json
+│   │   ├── special_tokens_map.json
+│   │   ├── tokenizer.json
+│   │   └── tokenizer_config.json
+│   ├── 2fine-tuned-gte-wmtmono-mixed2-seed42-label1
+│   │   ├── 1_Pooling
+│   │   │   └── config.json
+│   │   ├── 2_Normalize
+│   │   ├── README.md
+│   │   ├── config.json
+│   │   ├── config_sentence_transformers.json
+│   │   ├── model.safetensors
+│   │   ├── modules.json
+│   │   ├── sentence_bert_config.json
+│   │   ├── special_tokens_map.json
+│   │   ├── tokenizer.json
+│   │   └── tokenizer_config.json
+│   ├── 2fine-tuned-gte-wmtmono-noise-seed42-label1
+│   │   ├── 1_Pooling
+│   │   │   └── config.json
+│   │   ├── 2_Normalize
+│   │   ├── README.md
+│   │   ├── config.json
+│   │   ├── config_sentence_transformers.json
+│   │   ├── model.safetensors
+│   │   ├── modules.json
+│   │   ├── sentence_bert_config.json
+│   │   ├── special_tokens_map.json
+│   │   ├── tokenizer.json
+│   │   └── tokenizer_config.json
+│   ├── 2fine-tuned-gte-wmtmono-random2-seed42-label1
+│   │   ├── 1_Pooling
+│   │   │   └── config.json
+│   │   ├── 2_Normalize
+│   │   ├── README.md
+│   │   ├── config.json
+│   │   ├── config_sentence_transformers.json
+│   │   ├── model.safetensors
+│   │   ├── modules.json
+│   │   ├── sentence_bert_config.json
+│   │   ├── special_tokens_map.json
+│   │   ├── tokenizer.json
+│   │   └── tokenizer_config.json
+│   ├── 2fine-tuned-gte-wmtmono-random3-seed42-label1
+│   │   ├── 1_Pooling
+│   │   │   └── config.json
+│   │   ├── 2_Normalize
+│   │   ├── README.md
+│   │   ├── config.json
+│   │   ├── config_sentence_transformers.json
+│   │   ├── model.safetensors
+│   │   ├── modules.json
+│   │   ├── sentence_bert_config.json
+│   │   ├── special_tokens_map.json
+│   │   ├── tokenizer.json
+│   │   └── tokenizer_config.json
+│   ├── 2seedswmtmono+cross.xlsx
+│   ├── 2wmtmono+cross.xlsx
+│   ├── 3.xlsx
+│   ├── 30k.py
+│   ├── 30kseed42.xlsx
+│   ├── 3av.xlsx
+│   ├── 3wmtmono.xlsx
+│   ├── 40.xlsx
+│   ├── 40k.py
+│   ├── 40kseed42.xlsx
+│   ├── 4av.xlsx
+│   ├── 5.xlsx
+│   ├── 50k.py
+│   ├── 50k123.xlsx
+│   ├── 50k4.xlsx
+│   ├── 50kseed42.xlsx
+│   ├── 5av.xlsx
+│   ├── corrupt_2.csv
+│   ├── corrupt_3.csv
+│   ├── cross.xlsx
+│   ├── crosseva.xlsx
+│   ├── eval
+│   │   ├── blackletter+distort_19.csv
+│   │   ├── blackletter+distort_21.csv
+│   │   ├── noise_19.csv
+│   │   ├── noise_21.csv
+│   │   ├── random2.csv
+│   │   ├── random3.csv
+│   │   ├── simple_19.csv
+│   │   ├── simple_21.csv
+│   │   ├── wmt2019_adversarial_dataset.csv
+│   │   └── wmt2021_adversarial_dataset.csv
+│   ├── final.ipynb
+│   ├── fine-tuned-gte-corrupt_2-monolingual-30k.xlsx
+│   ├── finetune.ipynb
+│   ├── mono.xlsx
+│   ├── monoav.xlsx
+│   ├── output.log
+│   ├── preprocess.ipynb
+│   ├── processed_corrupt_2.csv
+│   ├── processed_corrupt_3.csv
+│   ├── processed_random_2.csv
+│   ├── processed_random_3.csv
+│   ├── random_2.csv
+│   ├── random_3.csv
+│   ├── requirements.txt
+│   ├── teldtalk.ipynb
+│   ├── teldtalk.xlsx
+│   ├── teldtalk40k.xlsx
+│   ├── test.ipynb
+│   ├── test.py
+│   ├── wmt.ipynb
+│   ├── wmtmono+cross.xlsx
+│   ├── wmtmono-label1.xlsx
+│   ├── wmtmono.xlsx
+│   └── wmtmono2.xlsx
+├── stanza_resources
+│   ├── de
+│   │   ├── backward_charlm
+│   │   │   └── newswiki.pt
+│   │   ├── constituency
+│   │   │   └── spmrl_charlm.pt
+│   │   ├── default.zip
+│   │   ├── depparse
+│   │   │   └── gsd_charlm.pt
+│   │   ├── forward_charlm
+│   │   │   └── newswiki.pt
+│   │   ├── lemma
+│   │   │   └── gsd_nocharlm.pt
+│   │   ├── mwt
+│   │   │   └── gsd.pt
+│   │   ├── ner
+│   │   │   └── germeval2014.pt
+│   │   ├── pos
+│   │   │   └── gsd_charlm.pt
+│   │   ├── pretrain
+│   │   │   ├── conll17.pt
+│   │   │   └── fasttextwiki.pt
+│   │   ├── sentiment
+│   │   │   └── sb10k_charlm.pt
+│   │   └── tokenize
+│   │       └── gsd.pt
+│   ├── en
+│   │   ├── backward_charlm
+│   │   │   └── 1billion.pt
+│   │   ├── constituency
+│   │   │   └── ptb3-revised_charlm.pt
+│   │   ├── default.zip
+│   │   ├── depparse
+│   │   │   └── combined_charlm.pt
+│   │   ├── forward_charlm
+│   │   │   └── 1billion.pt
+│   │   ├── lemma
+│   │   │   └── combined_nocharlm.pt
+│   │   ├── mwt
+│   │   │   └── combined.pt
+│   │   ├── ner
+│   │   │   └── ontonotes-ww-multi_charlm.pt
+│   │   ├── pos
+│   │   │   └── combined_charlm.pt
+│   │   ├── pretrain
+│   │   │   └── conll17.pt
+│   │   ├── sentiment
+│   │   │   └── sstplus_charlm.pt
+│   │   └── tokenize
+│   │       └── combined.pt
+│   ├── fr
+│   │   ├── backward_charlm
+│   │   │   └── newswiki.pt
+│   │   ├── default.zip
+│   │   ├── depparse
+│   │   │   └── combined_charlm.pt
+│   │   ├── forward_charlm
+│   │   │   └── newswiki.pt
+│   │   ├── lemma
+│   │   │   └── combined_nocharlm.pt
+│   │   ├── mwt
+│   │   │   └── combined.pt
+│   │   ├── ner
+│   │   │   └── wikiner.pt
+│   │   ├── pos
+│   │   │   └── combined_charlm.pt
+│   │   ├── pretrain
+│   │   │   ├── conll17.pt
+│   │   │   └── fasttextwiki.pt
+│   │   └── tokenize
+│   │       └── combined.pt
+│   └── resources.json
+└── test
+    ├── corrupt_2.csv
+    └── test.ipynb

@@ -1,0 +1,12 @@
+README.md
+setup.py
+ocr_simulator/__init__.py
+ocr_simulator/core.py
+ocr_simulator/effects.py
+ocr_simulator/languages.py
+ocr_simulator/utils.py
+ocr_simulator.egg-info/PKG-INFO
+ocr_simulator.egg-info/SOURCES.txt
+ocr_simulator.egg-info/dependency_links.txt
+ocr_simulator.egg-info/requires.txt
+ocr_simulator.egg-info/top_level.txt

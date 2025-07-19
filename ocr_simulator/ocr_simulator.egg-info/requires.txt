@@ -1,0 +1,6 @@
+numpy
+Pillow
+pytesseract
+pandas
+joblib
+tqdm
