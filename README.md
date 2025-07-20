@@ -5,7 +5,7 @@
 
 - [Motivation](#motivation)
 - [Repository Organization](#repository-organization)
-- [OCR Robust Models](#ocr-robust-models)
+- [OCR Robustified Models](#ocr-robustified-models)
 - [Released Datasets](#released-datasets)
 - [Reproducing the Experiments](#reproducing-the-experiments)
 - [BibTeX Reference](#bibtex-reference)
@@ -29,7 +29,10 @@ The repository is organized as follows:
 │   └── The script to generate stochastically the character level noise used to fine-tune our models.
 ```
 
-## OCR Robust Models
+## OCR Robustified Models
+
+A version of our **OCR Robust models** (fine-tuned on [TED-X with random noise](noisy_finetuning_data/TED_data_random_noise_10k_sampled.csv)) is available on huggingface [here](https://huggingface.co/impresso-project/OCR-robust-gte-multilingual-base).
+
 
 ## Released Datasets
 
@@ -41,14 +44,14 @@ Our newly introduced noisy variants (realistic and stochastic) of the parallel t
 
 ### Other Evaluation Datasets
 
-More samples sfor Finetuning datasets and the other datasets (STS-X, Original CLSD, HistLux) used for evaluating the models are taken from other works are conveniently [linked](https://drive.google.com/file/d/1gydv66U99Gi5x7Uj_fJFLjZYEVC9EHsR/view?usp=sharing) together:
+More samples for Finetuning datasets and the other datasets (STS-X, Original CLSD, HistLux) used for evaluating the models are taken from other works are conveniently [linked](https://drive.google.com/file/d/1gydv66U99Gi5x7Uj_fJFLjZYEVC9EHsR/view?usp=sharing) together:
 
 
 For license on using these datasets, please see the original works:
 
 - **STS-X**: [paper](https://aclanthology.org/anthology-files/pdf/S/S17/S17-2001.pdf)
 - **CLSD**: [paper](https://arxiv.org/pdf/2502.08638)
-- **HistLux**: [paper](https://aclanthology.org/2025.latechclfl-1.26.pdf)
+- **HistLUX**: [paper](https://aclanthology.org/2025.latechclfl-1.26.pdf)
 
 ## Reproducing the Experiments
 I will update this soon! Pretend it's here already!
