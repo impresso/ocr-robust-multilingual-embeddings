@@ -1,16 +1,29 @@
 # [Cheap Character Noise for OCR-Robust Multilingual Embeddings](https://aclanthology.org/2025.coling-main.585/) - Datasets, Resources and Adapted Models <img height="24" alt="acl2025 vienna" src="https://github.com/user-attachments/assets/73357d43-7d70-4556-b448-f85da93c1e90" />
 ![License: AGPLV3+](https://img.shields.io/badge/License-AGPLV3+-brightgreen.svg)
 
+---
+
+## Overview
+
+This repository accompanies our [ACL2025 Findings paper](https://aclanthology.org/2025.coling-main.585/), providing models, noisy datasets, and tools for robust multilingual embeddings under OCR noise. You’ll find fine-tuned models, evaluation and training data, and utilities for simulating character-level OCR noise.
+
+---
+
 ## Table of Contents
 
-- [Motivation](#motivation)
-- [Repository Organization](#repository-organization)
-- [OCR Robustified Models](#ocr-robustified-models)
-- [Released Datasets](#released-datasets)
+- [Overview](#overview)
+- [Repository Structure](#repository-structure)
+- [Models](#models)
+- [Datasets](#datasets)
 - [Reproducing the Experiments](#reproducing-the-experiments)
-- [BibTeX Reference](#bibtex-reference)
-- [Further Support](#further-support)
+- [Citation](#citation)
+- [Further Support & Contributing](#support--contributing)
 - [About Impresso](#about-impresso)
+- [License](#license)
+
+---
+
+## Repository Structure
 
 ## Motivation
 
@@ -29,42 +42,50 @@ The repository is organized as follows:
 │   └── The script to generate stochastically the character level noise used to fine-tune our models.
 ```
 
-## OCR Robustified Models
+---
 
-A version of our **OCR Robust models** (fine-tuned on [TED-X with random noise](noisy_finetuning_data/TED_data_random_noise_10k_sampled.csv)) is available on huggingface [here](https://huggingface.co/impresso-project/OCR-robust-gte-multilingual-base).
+## Models
 
+A version of our **OCR Robust models** (fine-tuned on [TED-X with random noise](noisy_finetuning_data/TED_data_random_noise_10k_sampled.csv)) is available on Hugging Face:  
+[impresso-project/OCR-robust-gte-multilingual-base](https://huggingface.co/impresso-project/OCR-robust-gte-multilingual-base)
 
-## Released Datasets
+---
+
+## Datasets
 
 ### Evaluation Datasets
-Our newly introduced noisy variants of the CLSD WMT datasets are available within the [noisy_evaluation_datasets](./noisy_evaluation_datasets) directory.
+
+Noisy variants of the CLSD WMT datasets are available in [noisy_evaluation_datasets](./noisy_evaluation_datasets).
 
 ### Finetuning Datasets
-Our newly introduced noisy variants (realistic and stochastic) of the parallel texts of TED and X-News datasets are available within the [noisy_finetuning_data](./noisy_finetuning_data) directory.
 
-### Other Evaluation Datasets
+Noisy versions (random and realistic) of TED and X-News parallel texts are available in [noisy_finetuning_data](./noisy_finetuning_data).
 
-More samples for Finetuning datasets and the other datasets (STS-X, Original CLSD, HistLux) used for evaluating the models are taken from other works are conveniently [linked](https://drive.google.com/file/d/1gydv66U99Gi5x7Uj_fJFLjZYEVC9EHsR/view?usp=sharing) together:
+### Other Datasets
 
+Additional datasets used for evaluation and finetuning are also provided ([link](https://drive.google.com/file/d/1gydv66U99Gi5x7Uj_fJFLjZYEVC9EHsR/view?usp=sharing)):
 
-For license on using these datasets, please see the original works:
+- **STS-X:** [paper](https://aclanthology.org/anthology-files/pdf/S/S17/S17-2001.pdf)
+- **CLSD:** [paper](https://arxiv.org/pdf/2502.08638)
+- **HistLUX:** [paper](https://aclanthology.org/2025.latechclfl-1.26.pdf)
 
-- **STS-X**: [paper](https://aclanthology.org/anthology-files/pdf/S/S17/S17-2001.pdf)
-- **CLSD**: [paper](https://arxiv.org/pdf/2502.08638)
-- **HistLUX**: [paper](https://aclanthology.org/2025.latechclfl-1.26.pdf)
+---
 
 ## Reproducing the Experiments
-I will update this soon! Pretend it's here already!
 
-## BibTeX Reference
+*Instructions for reproducing the experiments will be available soon!*
 
-If you would like to cite this project, or the associated paper, here's a bibtex:
+---
+
+## Citation
+
+If you use these resources, please cite our paper:
 
 ```bibtex
-UPDATE ONCE IT'S AVAILABLE
+# To be added after publication.
 ```
 
-## Further Support
+## Further Support & Contributing
 In the future, we will work towards creating multilingual embedding models that are diversely robust. If you are interested in contributing or need access to any (not yet) released material, please reach out to andrianos.michail@cl.uzh.ch.
 
 ## About Impresso
