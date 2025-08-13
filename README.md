@@ -97,8 +97,7 @@ If you use these resources, please cite our paper:
     publisher = "Association for Computational Linguistics",
     url = "https://aclanthology.org/2025.findings-acl.609/",
     pages = "11705--11716",
-    ISBN = "979-8-89176-256-5",
-    abstract = "The large amount of text collections digitized by imperfect OCR systems requires semantic search models that perform robustly on noisy input. Such collections are highly heterogeneous, with varying degrees of OCR quality, spelling conventions and other inconsistencies {---}all phenomena that are underrepresented in the training data of standard embedding models, with ramifications for their generalization. In our paper, we show that this problem can be alleviated with a simple and inexpensive method that does not require supervision or in-domain training. Specifically, we fine-tune existing multilingual models using noisy texts and a contrastive loss. We show that these models show considerable improvements across different noise conditions. Control experiments indicate minimal, and occasionally positive, impact on standard similarity tasks. These findings suggest that embedding models can be inexpensively adapted for cross-lingual semantic search in heterogeneous, digitized corpora. We publicly release our code, datasets, and models at https://github.com/impresso/ocr-robust-multilingual-embeddings."
+    ISBN = "979-8-89176-256-5"
 }
 ```
 
