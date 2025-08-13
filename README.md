@@ -23,11 +23,6 @@ This repository accompanies our [ACL2025 Findings paper](https://aclanthology.or
 
 ---
 
-
-## Motivation
-
-To be added!
-
 ## Repository Structure
 
 The repository is organized as follows:
