@@ -1,5 +1,5 @@
-# [Cheap Character Noise for OCR-Robust Multilingual Embeddings](https://aclanthology.org/2025.findings-acl.609/) - Datasets, Resources and Adapted Models <img height="24" alt="acl2025 vienna" src="https://github.com/user-attachments/assets/73357d43-7d70-4556-b448-f85da93c1e90" />
-![License: AGPLV3+](https://img.shields.io/badge/License-AGPLV3+-brightgreen.svg)
+# [Cheap Character Noise for OCR-Robust Multilingual Embeddings](https://aclanthology.org/2025.findings-acl.609/) - Datasets, Resources and Adapted Models
+<img height="24" alt="acl2025 vienna" src="https://github.com/user-attachments/assets/73357d43-7d70-4556-b448-f85da93c1e90" /> ![License: AGPLV3+](https://img.shields.io/badge/License-AGPLV3+-brightgreen.svg) 
 
 ---
 
