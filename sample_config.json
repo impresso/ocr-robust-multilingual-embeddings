@@ -1,0 +1,78 @@
+{
+    "model_name": "Alibaba-NLP/gte-multilingual-base",
+    "output_dir": "trained_models/adapted_model",
+    "batch_size": 8,
+    "batches_per_epoch": 3000,
+    "epochs": 1,
+    "lr": 2e-5,
+    "warmup_ratio": 0.1,
+    "seed": 42,
+    "stages": [
+        {
+            "name": "cross_lingual_alignment",
+            "sources": [
+                {
+                    "path": "noisy_finetuning_data/LREC/lb_de_training_set.jsonl",
+                    "format": "jsonl",
+                    "column_a": "lb",
+                    "column_b": "de",
+                    "max_samples": null
+                },
+                {
+                    "path": "noisy_finetuning_data/LREC/lb_en_training_set.jsonl",
+                    "format": "jsonl",
+                    "column_a": "lb",
+                    "column_b": "en",
+                    "max_samples": null
+                },
+                {
+                    "path": "noisy_finetuning_data/LREC/lb_fr_training_set.jsonl",
+                    "format": "jsonl",
+                    "column_a": "lb",
+                    "column_b": "fr",
+                    "max_samples": null
+                }
+            ]
+        },
+        {
+            "name": "ocr_noise_robustness",
+            "sources": [
+                {
+                    "path": "noisy_finetuning_data/ACL/TED_data_random_noise_concat.csv",
+                    "format": "csv",
+                    "column_a": "deu",
+                    "column_b": "deu_04",
+                    "max_samples": null
+                },
+                {
+                    "path": "noisy_finetuning_data/ACL/X-News_data_random_noise_10k_sampled.csv",
+                    "format": "csv",
+                    "column_a": "german",
+                    "column_b": "german_noise_random05",
+                    "max_samples": null
+                },
+                {
+                    "path": "noisy_finetuning_data/ACL/X-News_data_random_noise_10k_sampled.csv",
+                    "format": "csv",
+                    "column_a": "french",
+                    "column_b": "french_noise_random05",
+                    "max_samples": null
+                },
+                {
+                    "path": "noisy_finetuning_data/LREC/de_docs_random_noise.csv",
+                    "format": "csv",
+                    "column_a": "deu",
+                    "column_b": "deu_04",
+                    "max_samples": null
+                },
+                {
+                    "path": "noisy_finetuning_data/LREC/fr_docs_random_noise.csv",
+                    "format": "csv",
+                    "column_a": "fra",
+                    "column_b": "fra_04",
+                    "max_samples": null
+                }
+            ]
+        }
+    ]
+}
