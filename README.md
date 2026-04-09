@@ -34,7 +34,7 @@ The repository is organized as follows:
 │   └── The 10K (per language) noised training samples (TED - X-News) used for fine-tuning the models. Includes both random and realistic OCR Noise variants.
 ├── ocr_simulator
 │   └── The ocr_simulator library used to induce realistic ocr noise to texts.
-├── generate_random_character_noise_latin_alphabet
+├── generate_random_character_noise
 │   └── The script to generate stochastically the character level noise used to fine-tune our models.
 ```
 

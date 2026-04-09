@@ -61,6 +61,6 @@ Each line contains a `custom_id` and a `translation` array of sentence-aligned p
 ## Noise Generation
 
 - **Random character noise** was generated with
-  [`generate_random_character_noise_latin_alphabet/`](../generate_random_character_noise_latin_alphabet/)
+  [`generate_random_character_noise/`](../generate_random_character_noise/)
   using script-specific confusable character tables (substitution, insertion,
   deletion, swap) at configurable CER levels.

@@ -57,11 +57,18 @@ import os
 import random
 import sys
 
+import shutil
+
 import numpy as np
 import pandas as pd
 import torch
-from sentence_transformers import InputExample, SentenceTransformer, losses
-from torch.utils.data import DataLoader
+from datasets import Dataset as HFDataset
+from sentence_transformers import (
+    SentenceTransformer,
+    SentenceTransformerTrainer,
+    SentenceTransformerTrainingArguments,
+    losses,
+)
 
 
 def load_pairs_csv(path, col_a, col_b, max_samples=None):
@@ -118,11 +125,14 @@ def collect_pairs(sources, seed):
     return all_pairs
 
 
-def sample_examples(pairs, n, seed):
-    """Sample n InputExamples with replacement."""
+def sample_dataset(pairs, n, seed):
+    """Sample n pairs with replacement and return a HuggingFace Dataset."""
     rng = random.Random(seed)
     sampled = [pairs[rng.randrange(len(pairs))] for _ in range(n)]
-    return [InputExample(texts=[a, b]) for a, b in sampled]
+    return HFDataset.from_dict({
+        "anchor": [a for a, b in sampled],
+        "positive": [b for a, b in sampled],
+    })
 
 
 def main():
@@ -146,11 +156,9 @@ def main():
     random.seed(seed)
     np.random.seed(seed)
     torch.manual_seed(seed)
-    device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
     print(f"Model:          {model_name}")
     print(f"Output:         {output_dir}")
-    print(f"Device:         {device}")
     print(f"Batch size:     {batch_size}")
     print(f"Examples/epoch: {examples_per_epoch:,}")
     print(f"Epochs:         {epochs}")
@@ -176,25 +184,35 @@ def main():
 
         print(f"  Total pairs: {len(pairs):,}")
 
-        examples = sample_examples(pairs, examples_per_epoch, seed)
+        dataset = sample_dataset(pairs, examples_per_epoch, seed)
 
-        model = SentenceTransformer(current_model_path, trust_remote_code=True).to(device)
+        model = SentenceTransformer(current_model_path, trust_remote_code=True)
         train_loss = losses.MultipleNegativesRankingLoss(model=model)
-        loader = DataLoader(examples, batch_size=batch_size, shuffle=False)
-        warmup_steps = int(warmup_ratio * len(loader))
 
-        print(f"  Batches: {len(loader):,}, warmup: {warmup_steps}")
+        training_args = SentenceTransformerTrainingArguments(
+            output_dir=stage_output,
+            num_train_epochs=epochs,
+            per_device_train_batch_size=batch_size,
+            warmup_steps=warmup_ratio,
+            learning_rate=lr,
+            seed=seed,
+            logging_steps=100,
+            save_strategy="no",
+            report_to="none",
+        )
+
+        print(f"  Dataset: {len(dataset):,} examples, batch_size: {batch_size}")
         print()
 
-        model.fit(
-            train_objectives=[(loader, train_loss)],
-            epochs=epochs,
-            warmup_steps=warmup_steps,
-            optimizer_params={"lr": lr},
-            use_amp=True,
-            output_path=stage_output,
-            show_progress_bar=True,
+        trainer = SentenceTransformerTrainer(
+            model=model,
+            args=training_args,
+            train_dataset=dataset,
+            loss=train_loss,
         )
+
+        trainer.train()
+        model.save_pretrained(stage_output)
 
         current_model_path = stage_output
         print(f"  Checkpoint saved to {stage_output}\n")
@@ -202,7 +220,6 @@ def main():
     # Copy final stage to output root for convenience
     final_path = os.path.join(output_dir, "final")
     if current_model_path != model_name:
-        import shutil
         if os.path.exists(final_path):
             shutil.rmtree(final_path)
         shutil.copytree(current_model_path, final_path)
