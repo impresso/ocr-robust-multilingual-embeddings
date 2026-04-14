@@ -12,16 +12,16 @@ setup(
         "joblib",
         "tqdm"
     ],
-    author="Your Name",
-    author_email="your.email@example.com",
+    author="Yining Wang, Stylianos Psychias",
+    author_email="yining.wang@uzh.ch, stylianos.psychias@uzh.ch",
     description="OCR Simulator with various text effects",
     long_description=open("README.md").read(),
     long_description_content_type="text/markdown",
-    url="https://github.com/yourusername/ocr-simulator",
+    url="https://github.com/impresso/ocr-robust-multilingual-embeddings",
     classifiers=[
         "Programming Language :: Python :: 3",
-        "License :: OSI Approved :: MIT License",
+        "License :: OSI Approved :: GNU Affero General Public License v3",
         "Operating System :: OS Independent",
     ],
-    python_requires=">=3.6",
+    python_requires=">=3.9",
 )
