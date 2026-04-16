@@ -6,7 +6,7 @@
 
 This repository hosts the resources for two related papers on multilingual embeddings that remain robust under OCR noise:
 
-- **ACL 2025 Findings** — [*Cheap Character Noise for OCR-Robust Multilingual Embeddings*](https://aclanthology.org/2025.findings-acl.609/)
+- **ACL 2025(findings)** — [*Cheap Character Noise for OCR-Robust Multilingual Embeddings*](https://aclanthology.org/2025.findings-acl.609/)
 - **LREC 2026** — *[A Recipe for Adapting Multilingual Embedders to OCR-Error Robustness and Historical Texts](https://google.com)* — extends the denoising training to a wider set of languages and historical newspapers. *(link to be updated)*
 
 You’ll find fine-tuned models, noisy evaluation and training datasets, and utilities for simulating character-level OCR noise.
