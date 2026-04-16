@@ -34,7 +34,7 @@ The repository is organized as follows:
 │   └── The 10K (per language) noised training samples (TED - X-News) used for fine-tuning the models. Includes both random and realistic OCR Noise variants.
 ├── ocr_simulator
 │   └── The ocr_simulator library used to induce realistic ocr noise to texts.
-├── generate_random_character_noise_latin_alphabet
+├── generate_random_character_noise
 │   └── The script to generate stochastically the character level noise used to fine-tune our models.
 ```
 
@@ -63,7 +63,12 @@ Additional datasets used for evaluation and finetuning are also provided ([link]
 
 - **STS-X:** [paper](https://aclanthology.org/anthology-files/pdf/S/S17/S17-2001.pdf)
 - **CLSD:** [paper](https://arxiv.org/pdf/2502.08638)
-- **HistLUX:** [paper](https://aclanthology.org/2025.latechclfl-1.26.pdf)
+- **HistLUX:** [paper](https://aclanthology.org/2025.latechclfl-1.26.pdf) — training data: [impresso/histlux_emb](https://github.com/impresso/histlux_emb) (`prepared_training_sentences/`) or [HistLuxAlign on Hugging Face](https://huggingface.co/datasets/impresso-project/HistLuxAlign); bitext mining test set: [Google Drive](https://drive.google.com/file/d/1B_na_iXXa5nNcfh8L7sNIln9hNkji0ad/view)
+
+> **Large files not included in this repository:**  
+> The HISTLUX bitext mining JSONL files exceed GitHub's 100 MB limit.
+> See the README in [`noisy_evaluation_datasets/`](./noisy_evaluation_datasets)
+> for download instructions.
 
 ---
 

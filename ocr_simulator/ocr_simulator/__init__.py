@@ -16,8 +16,8 @@ from .languages import LANGUAGE_CONFIGS
 from .effects import apply_effects, apply_salt_and_pepper, apply_distortions
 
 __version__ = "0.1.0"
-__author__ = "Your Name"
-__email__ = "your.email@example.com"
+__author__ = "Yining Wang, Stylianos Psychias"
+__email__ = "yining.wang@uzh.ch, stylianos.psychias@uzh.ch"
 
 # Expose main components
 __all__ = [
