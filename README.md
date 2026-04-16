@@ -1,23 +1,29 @@
-# [Cheap Character Noise for OCR-Robust Multilingual Embeddings](https://aclanthology.org/2025.findings-acl.609/) - Datasets, Resources and Adapted Models
-<a href="https://2025.aclweb.org/"><img height="24" alt="acl2025 vienna" src="https://github.com/user-attachments/assets/73357d43-7d70-4556-b448-f85da93c1e90" /> </a> ![License: AGPLV3+](https://img.shields.io/badge/License-AGPLV3+-brightgreen.svg) 
+# OCR-Robust Multilingual Embeddings — Datasets, Resources, and Adapted Models
 
----
+<a href="https://2025.aclweb.org/"><img height="24" alt="ACL 2025 Vienna" src="https://github.com/user-attachments/assets/73357d43-7d70-4556-b448-f85da93c1e90" /></a>
+<a href="https://lrec2026.info"><img height="24" alt="LREC 2026" src="https://github.com/user-attachments/assets/57c8910b-e571-4150-84c2-81ddf29cb9bc" /></a>
+![License: AGPLv3+](https://img.shields.io/badge/License-AGPLv3+-brightgreen.svg)
 
-## Overview
+This repository hosts the resources for two related papers on multilingual embeddings that remain robust under OCR noise:
 
-This repository accompanies our [ACL2025 Findings paper](https://aclanthology.org/2025.findings-acl.609/), providing models, noisy datasets, and tools for robust multilingual embeddings under OCR noise. You’ll find fine-tuned models, evaluation and training data, and utilities for simulating character-level OCR noise.
+- **ACL 2025 Findings** — [*Cheap Character Noise for OCR-Robust Multilingual Embeddings*](https://aclanthology.org/2025.findings-acl.609/)
+- **LREC 2026** — *[A Recipe for Adapting Multilingual Embedders to OCR-Error Robustness and Historical Texts](https://google.com)* — extends the denoising training to a wider set of languages and historical newspapers. *(link to be updated)*
+
+You’ll find fine-tuned models, noisy evaluation and training datasets, and utilities for simulating character-level OCR noise.
 
 ---
 
 ## Table of Contents
 
-- [Overview](#overview)
 - [Repository Structure](#repository-structure)
 - [Models](#models)
 - [Datasets](#datasets)
+  - [Clean Evaluation Datasets](#clean-evaluation-datasets)
+  - [Noisy Evaluation Datasets](#noisy-evaluation-datasets)
+  - [Fine-tuning Datasets](#fine-tuning-datasets)
 - [Reproducing the Experiments](#reproducing-the-experiments)
 - [Citation](#citation)
-- [Further Support & Contributing](#support--contributing)
+- [Support & Contributing](#support--contributing)
 - [About Impresso](#about-impresso)
 - [License](#license)
 
@@ -25,103 +31,134 @@ This repository accompanies our [ACL2025 Findings paper](https://aclanthology.or
 
 ## Repository Structure
 
-The repository is organized as follows:
-
 ```
-├── noisy_evaluation_datasets
-│   └── The noised evaluation datasets (CLSD - WMT19/21) produced.
-├── noisy_finetuning_data
-│   └── The 10K (per language) noised training samples (TED - X-News) used for fine-tuning the models. Includes both random and realistic OCR Noise variants.
-├── ocr_simulator
-│   └── The ocr_simulator library used to induce realistic ocr noise to texts.
-├── generate_random_character_noise
-│   └── The script to generate stochastically the character level noise used to fine-tune our models.
+├── clean_evaluation_datasets/
+│   └── ACL/                        # Clean CLSD (WMT19/21) and X-STS files
+├── noisy_evaluation_datasets/
+│   └── ACL/                        # OCR-degraded CLSD variants (MN, BL/SD, SnP)
+├── noisy_finetuning_data/
+│   ├── ACL/                        # TED and X-News with random character noise
+│   └── LREC/                       # Historical newspaper + MLSum noised data,
+│                                   #   plus Luxembourgish parallel pairs (JSONL)
+├── generate_random_character_noise/
+│   └── Script for stochastic character-level noise generation.
+├── ocr_simulator/
+│   └── Library for inducing realistic OCR noise in texts.
+├── adapt_model.py                  # Fine-tuning / adaptation procedure
+├── evaluate_embedding_model.py     # Evaluation of embedding models
+├── sample_training.ipynb           # Example training notebook
+├── sample_config.json              # Example training configuration
+└── requirements.txt
 ```
 
 ---
 
 ## Models
 
-A version of our **OCR Robust models** (fine-tuned on [TED-X with random noise](noisy_finetuning_data/TED_data_random_noise_10k_sampled.csv)) is available on Hugging Face:  
-[impresso-project/OCR-robust-gte-multilingual-base](https://huggingface.co/impresso-project/OCR-robust-gte-multilingual-base)
+Our OCR-robust models are available on Hugging Face:
+
+| Paper      | Model                                                                                                                  |
+|------------|------------------------------------------------------------------------------------------------------------------------|
+| ACL 2025   | [impresso-project/OCR-robust-gte-multilingual-base](https://huggingface.co/impresso-project/OCR-robust-gte-multilingual-base) |
+| LREC 2026  | [impresso-project/OCR-robust-gte-multilingual-base](https://huggingface.co/impresso-project/OCR-diversely-robust-gte-multilingual-base) |
+
+The ACL 2025 model was fine-tuned on [TED with random character noise](noisy_finetuning_data/ACL/TED_data_random_noise_10k_sampled.csv).
 
 ---
 
 ## Datasets
 
-### Evaluation Datasets
+Each dataset folder contains its own README with full file-level details (columns, row counts, CER levels, schema). The sections below give a high-level overview.
 
-Noisy variants of the CLSD WMT datasets are available in [noisy_evaluation_datasets](./noisy_evaluation_datasets).
+### Clean Evaluation Datasets
 
-### Finetuning Datasets
+Located in [`clean_evaluation_datasets/ACL/`](./clean_evaluation_datasets/ACL):
 
-Noisy versions (random and realistic) of TED and X-News parallel texts are available in [noisy_finetuning_data](./noisy_finetuning_data).
+- **CLSD** — Cross-Lingual Semantic Discrimination benchmark on WMT19/21 DE–FR news, used for retrieval-style Precision@1 evaluation. See [Michail et al., 2025b](https://arxiv.org/pdf/2502.08638).
+- **X-STS** — SemEval-2017 Task 1 cross-lingual STS pairs (AR–EN, EN–ES, ES–EN, TR–EN), used as a control task to check that OCR adaptation does not harm clean-text performance. See [Cer et al., 2017](https://aclanthology.org/anthology-files/pdf/S/S17/S17-2001.pdf).
 
-### Other Datasets
+### Noisy Evaluation Datasets
 
-Additional datasets used for evaluation and finetuning are also provided ([link](https://drive.google.com/file/d/1gydv66U99Gi5x7Uj_fJFLjZYEVC9EHsR/view?usp=sharing)):
+Located in [`noisy_evaluation_datasets/ACL/`](./noisy_evaluation_datasets/ACL):
 
-- **STS-X:** [paper](https://aclanthology.org/anthology-files/pdf/S/S17/S17-2001.pdf)
-- **CLSD:** [paper](https://arxiv.org/pdf/2502.08638)
-- **HistLUX:** [paper](https://aclanthology.org/2025.latechclfl-1.26.pdf) — training data: [impresso/histlux_emb](https://github.com/impresso/histlux_emb) (`prepared_training_sentences/`) or [HistLuxAlign on Hugging Face](https://huggingface.co/datasets/impresso-project/HistLuxAlign); bitext mining test set: [Google Drive](https://drive.google.com/file/d/1B_na_iXXa5nNcfh8L7sNIln9hNkji0ad/view)
+- **Noisy CLSD** — OCR-degraded CLSD variants at three noise levels: Minimal Noise (MN), Blackletter/Scanned Distorted (BL/SD), and Salt-and-Pepper (SnP). Generated by printing, visually degrading, and re-OCR-ing the clean CLSD texts with Tesseract.
+- **HISTLUX bitext mining** — Historical Luxembourgish articles (1840–1950) sentence-aligned to modern DE/EN/FR translations, evaluated as bitext mining. See [Michail et al., 2025c](https://aclanthology.org/2025.latechclfl-1.26.pdf).
 
-> **Large files not included in this repository:**  
-> The HISTLUX bitext mining JSONL files exceed GitHub's 100 MB limit.
-> See the README in [`noisy_evaluation_datasets/`](./noisy_evaluation_datasets)
-> for download instructions.
+> **Note:** The six HISTLUX bitext mining JSONL files (350–425 MB each) exceed GitHub’s 100 MB limit and are not included in the repository. Download them from [Google Drive](https://drive.google.com/file/d/1B_na_iXXa5nNcfh8L7sNIln9hNkji0ad/view) and place them in `noisy_evaluation_datasets/ACL/`.
+
+### Fine-tuning Datasets
+
+Located in [`noisy_finetuning_data/`](./noisy_finetuning_data), split by paper:
+
+- **`ACL/`** — [TED2020](https://opus.nlpl.eu/) and X-News parallel DE–FR texts with random character noise at CER ≈ 4%, 5%, 10%, 15%. Includes a 10K stratified sample per corpus and a full concatenated TED corpus.
+- **`LREC/`** — Resources for both stages of the LREC 2026 recipe:
+  - Luxembourgish ↔ DE/EN/FR parallel sentence pairs from historical newspapers (Stage A)
+  - DE and FR historical newspaper articles with random character noise, plus a noised [MLSum](https://huggingface.co/datasets/reciTAL/mlsum) sample (Stage B)
+
+The Luxembourgish parallel data originates from [impresso/histlux_emb](https://github.com/impresso/histlux_emb) (see `prepared_training_sentences/`) and is also available as [HistLuxAlign on Hugging Face](https://huggingface.co/datasets/impresso-project/HistLuxAlign).
 
 ---
 
 ## Reproducing the Experiments
 
-*Instructions for reproducing the experiments will be available soon!*
+- **Adaptation / fine-tuning:** `adapt_model.py`
+- **Evaluation:** `evaluate_embedding_model.py`
+
+Usage instructions are documented inline in each script.
 
 ---
 
 ## Citation
 
-If you use these resources, please cite our paper:
+If you use these resources, please cite:
 
 ```bibtex
 @inproceedings{michail-etal-2025-cheap,
-    title = "Cheap Character Noise for {OCR}-Robust Multilingual Embeddings",
-    author = "Michail, Andrianos  and
-      Opitz, Juri  and
-      Wang, Yining  and
-      Meister, Robin  and
-      Sennrich, Rico  and
-      Clematide, Simon",
-    editor = "Che, Wanxiang  and
-      Nabende, Joyce  and
-      Shutova, Ekaterina  and
-      Pilehvar, Mohammad Taher",
+    title     = "Cheap Character Noise for {OCR}-Robust Multilingual Embeddings",
+    author    = "Michail, Andrianos  and
+                 Opitz, Juri  and
+                 Wang, Yining  and
+                 Meister, Robin  and
+                 Sennrich, Rico  and
+                 Clematide, Simon",
+    editor    = "Che, Wanxiang  and
+                 Nabende, Joyce  and
+                 Shutova, Ekaterina  and
+                 Pilehvar, Mohammad Taher",
     booktitle = "Findings of the Association for Computational Linguistics: ACL 2025",
-    month = jul,
-    year = "2025",
-    address = "Vienna, Austria",
+    month     = jul,
+    year      = "2025",
+    address   = "Vienna, Austria",
     publisher = "Association for Computational Linguistics",
-    url = "https://aclanthology.org/2025.findings-acl.609/",
-    pages = "11705--11716",
-    ISBN = "979-8-89176-256-5"
+    url       = "https://aclanthology.org/2025.findings-acl.609/",
+    pages     = "11705--11716",
+    ISBN      = "979-8-89176-256-5"
 }
+
+% LREC 2026 citation — to be added
 ```
 
-## Further Support & Contributing
-In the future, we will work towards creating multilingual embedding models that are diversely robust. If you are interested in contributing or need access to any (not yet) released material, please reach out to andrianos.michail@cl.uzh.ch.
+---
+
+## Support & Contributing
+
+We plan to continue work on multilingual embedding models that are robust across a broader range of conditions. For contributions or access to material not yet released, contact [andrianos.michail@cl.uzh.ch](mailto:andrianos.michail@cl.uzh.ch).
+
+---
 
 ## About Impresso
 
-### Impresso project
+[Impresso — Media Monitoring of the Past](https://impresso-project.ch) is an interdisciplinary research project developing tools to process and explore large media archives across modalities, time, languages, and national borders.
 
-[Impresso - Media Monitoring of the Past](https://impresso-project.ch) is an interdisciplinary research project that aims to develop and consolidate tools for processing and exploring large collections of media archives across modalities, time, languages and national borders. The first project (2017-2021) was funded by the Swiss National Science Foundation under grant No. [CRSII5_173719](http://p3.snf.ch/project-173719) and the second project (2023-2027) by the SNSF under grant No. [CRSII5_213585](https://data.snf.ch/grants/grant/213585) and the Luxembourg National Research Fund under grant No. 17498891.
+- First project (2017–2021): Swiss National Science Foundation, grant [CRSII5_173719](http://p3.snf.ch/project-173719)
+- Second project (2023–2027): SNSF grant [CRSII5_213585](https://data.snf.ch/grants/grant/213585) and Luxembourg National Research Fund grant 17498891
 
-### Copyright
+---
 
-Copyright (C) 2025 The Impresso team.
+## License
 
-### License
-
-This program is provided as open source under the [GNU Affero General Public License](https://github.com/impresso/impresso-pyindexation/blob/master/LICENSE) v3 or later.
+Copyright © 2025 The Impresso team.
+Released under the [GNU Affero General Public License v3 or later](https://github.com/impresso/impresso-pyindexation/blob/master/LICENSE).
 
 ---
 
