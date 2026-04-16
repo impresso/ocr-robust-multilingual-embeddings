@@ -60,7 +60,7 @@ Our OCR-robust models are available on Hugging Face:
 | Paper      | Model                                                                                                                  |
 |------------|------------------------------------------------------------------------------------------------------------------------|
 | ACL 2025   | [impresso-project/OCR-robust-gte-multilingual-base](https://huggingface.co/impresso-project/OCR-robust-gte-multilingual-base) |
-| LREC 2026  | [impresso-project/OCR-robust-gte-multilingual-base](https://huggingface.co/impresso-project/OCR-diversely-robust-gte-multilingual-base) |
+| LREC 2026  | [impresso-project/OCR-diversely-robust-gte-multilingual-base](https://huggingface.co/impresso-project/OCR-diversely-robust-gte-multilingual-base) |
 
 The ACL 2025 model was fine-tuned on [TED with random character noise](noisy_finetuning_data/ACL/TED_data_random_noise_10k_sampled.csv).
 
