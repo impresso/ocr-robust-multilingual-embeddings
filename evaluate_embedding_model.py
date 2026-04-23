@@ -31,6 +31,7 @@ import argparse
 import json
 import os
 import sys
+from itertools import product
 
 import numpy as np
 import pandas as pd
@@ -46,40 +47,61 @@ from sentence_transformers import util as st_util
 CLEAN_EVAL_DIR = "clean_evaluation_datasets/ACL"
 NOISY_EVAL_DIR = "noisy_evaluation_datasets/ACL"
 
-CLSD_DATASETS = {
-    "WMT19_clean": {
-        "path": os.path.join(CLEAN_EVAL_DIR, "CLSD_wmt2019_adversarial_dataset.csv"),
-        "src": "fra", "tgt": "deu",
-    },
-    "WMT21_clean": {
-        "path": os.path.join(CLEAN_EVAL_DIR, "CLSD_wmt2021_adversarial_dataset.csv"),
-        "src": "fra", "tgt": "deu",
-    },
-    "WMT19_MN": {
-        "path": os.path.join(NOISY_EVAL_DIR, "CLSD_WMT19_MN_noise.csv"),
-        "src": "fra_04", "tgt": "deu_04",
-    },
-    "WMT21_MN": {
-        "path": os.path.join(NOISY_EVAL_DIR, "CLSD_WMT21_MN_noise.csv"),
-        "src": "fra_04", "tgt": "deu_04",
-    },
-    "WMT19_BLDS": {
-        "path": os.path.join(NOISY_EVAL_DIR, "CLSD_WMT19_BLDS_noise.csv"),
-        "src": "fra_04", "tgt": "deu_04",
-    },
-    "WMT21_BLDS": {
-        "path": os.path.join(NOISY_EVAL_DIR, "CLSD_WMT21_BLDS_noise.csv"),
-        "src": "fra_04", "tgt": "deu_04",
-    },
-    "WMT19_SNP": {
-        "path": os.path.join(NOISY_EVAL_DIR, "CLSD_WMT19_SNP_noise.csv"),
-        "src": "fra_04", "tgt": "deu_04",
-    },
-    "WMT21_SNP": {
-        "path": os.path.join(NOISY_EVAL_DIR, "CLSD_WMT21_SNP_noise.csv"),
-        "src": "fra_04", "tgt": "deu_04",
-    },
+CLSD_VERSIONS = {
+    "deu": ["fra", "fra_04", "fr_adv1", "fr_adv2", "fr_adv3", "fr_adv4"],
+    "fra": ["deu", "deu_04", "de_adv1", "de_adv2", "de_adv3", "de_adv4"],
 }
+
+CLSD_TASKS = [
+    {
+        "name": "WMT19_MN",
+        "display": "WMT19 Simple Noise (MN)",
+        "levels": {
+            "clean": os.path.join(CLEAN_EVAL_DIR, "CLSD_wmt2019_adversarial_dataset.csv"),
+            "MN_noise": os.path.join(NOISY_EVAL_DIR, "CLSD_WMT19_MN_noise.csv"),
+        },
+    },
+    {
+        "name": "WMT21_MN",
+        "display": "WMT21 Simple Noise (MN)",
+        "levels": {
+            "clean": os.path.join(CLEAN_EVAL_DIR, "CLSD_wmt2021_adversarial_dataset.csv"),
+            "MN_noise": os.path.join(NOISY_EVAL_DIR, "CLSD_WMT21_MN_noise.csv"),
+        },
+    },
+    {
+        "name": "WMT19_BLDS",
+        "display": "WMT19 Blackletter-Scanned (BLDS)",
+        "levels": {
+            "clean": os.path.join(CLEAN_EVAL_DIR, "CLSD_wmt2019_adversarial_dataset.csv"),
+            "bl-distorted": os.path.join(NOISY_EVAL_DIR, "CLSD_WMT19_BLDS_noise.csv"),
+        },
+    },
+    {
+        "name": "WMT21_BLDS",
+        "display": "WMT21 Blackletter-Scanned (BLDS)",
+        "levels": {
+            "clean": os.path.join(CLEAN_EVAL_DIR, "CLSD_wmt2021_adversarial_dataset.csv"),
+            "bl-distorted": os.path.join(NOISY_EVAL_DIR, "CLSD_WMT21_BLDS_noise.csv"),
+        },
+    },
+    {
+        "name": "WMT19_SNP",
+        "display": "WMT19 Salt & Pepper (SNP)",
+        "levels": {
+            "clean": os.path.join(CLEAN_EVAL_DIR, "CLSD_wmt2019_adversarial_dataset.csv"),
+            "SaltnPepper": os.path.join(NOISY_EVAL_DIR, "CLSD_WMT19_SNP_noise.csv"),
+        },
+    },
+    {
+        "name": "WMT21_SNP",
+        "display": "WMT21 Salt & Pepper (SNP)",
+        "levels": {
+            "clean": os.path.join(CLEAN_EVAL_DIR, "CLSD_wmt2021_adversarial_dataset.csv"),
+            "SaltnPepper": os.path.join(NOISY_EVAL_DIR, "CLSD_WMT21_SNP_noise.csv"),
+        },
+    },
+]
 
 STS_DATASETS = {
     "sts17_ar-en": {"path": os.path.join(CLEAN_EVAL_DIR, "sts17_ar-en.csv"), "col_a": "eng", "col_b": "ara"},
@@ -99,39 +121,80 @@ BITEXT_PAIRS = [
 
 
 # ---------------------------------------------------------------------------
-# CLSD Evaluation
+# CLSD Evaluation (Adversarial Discrimination)
 # ---------------------------------------------------------------------------
-def clsd_accuracy(model, csv_path, src_col, tgt_col):
-    """Compute CLSD retrieval accuracy (source → target)."""
-    df = pd.read_csv(csv_path).dropna(subset=[src_col, tgt_col])
-    src = df[src_col].astype(str).tolist()
-    tgt = df[tgt_col].astype(str).tolist()
+def compare_languages(model, left_df, right_df, main_col, versions):
+    """Compute adversarial discrimination accuracy.
 
-    src_emb = model.encode(src, convert_to_tensor=True, show_progress_bar=False)
-    tgt_emb = model.encode(tgt, convert_to_tensor=True, show_progress_bar=False)
+    For each sample, encode the source from left_df[main_col] and each
+    candidate version from right_df[version].  The correct translation is
+    versions[0]; the rest are adversarial alternatives.
 
-    sims = st_util.cos_sim(src_emb, tgt_emb)
-    preds = sims.argmax(dim=1).cpu()
-    gold = torch.arange(len(src))
-    return (preds == gold).float().mean().item()
+    A sample counts as correct only when versions[0] has the unique
+    highest cosine similarity with the source.
+
+    Returns accuracy as a percentage (0–100).
+    """
+    main_emb = model.encode(
+        left_df[main_col].astype(str).tolist(),
+        convert_to_tensor=True, show_progress_bar=False,
+    )
+    scores = pd.DataFrame()
+    for version in versions:
+        ver_emb = model.encode(
+            right_df[version].astype(str).tolist(),
+            convert_to_tensor=True, show_progress_bar=False,
+        )
+        scores[version] = st_util.cos_sim(main_emb, ver_emb).diag().cpu().numpy()
+
+    max_col = scores.idxmax(axis=1)
+    max_val = scores.max(axis=1)
+    is_max = scores.eq(max_val, axis=0)
+    unique_max = is_max.sum(axis=1) == 1
+    correct = (max_col == versions[0]) & unique_max
+    return correct.mean() * 100
 
 
 def evaluate_clsd(model):
-    """Run CLSD evaluation on all available datasets."""
+    """Run CLSD adversarial discrimination on all available tasks."""
     results = {}
-    available = {k: v for k, v in CLSD_DATASETS.items() if os.path.exists(v["path"])}
 
-    if not available:
-        print("  No CLSD evaluation files found. Skipping.")
-        return results
+    for task in CLSD_TASKS:
+        available_levels = {
+            k: v for k, v in task["levels"].items() if os.path.exists(v)
+        }
+        if len(available_levels) < 2:
+            continue
 
-    print(f"\n{'Dataset':<20} {'Accuracy':>10}")
-    print(f"{'-'*20} {'-'*10}")
+        task_results = {}
+        level_names = list(available_levels.keys())
 
-    for name, info in available.items():
-        acc = clsd_accuracy(model, info["path"], info["src"], info["tgt"])
-        results[name] = round(acc, 4)
-        print(f"{name:<20} {acc:>10.4f}")
+        for left_level, right_level in product(level_names, repeat=2):
+            left_df = pd.read_csv(available_levels[left_level])
+            right_df = pd.read_csv(available_levels[right_level])
+
+            for main_col, versions in CLSD_VERSIONS.items():
+                if main_col not in left_df.columns:
+                    continue
+                if not all(v in right_df.columns for v in versions):
+                    continue
+
+                left_lang = "DE" if main_col == "deu" else "FR"
+                right_lang = "FR" if main_col == "deu" else "DE"
+                direction = f"{left_lang}_{left_level}->{right_lang}_{right_level}"
+
+                acc = compare_languages(
+                    model, left_df, right_df, main_col, versions,
+                )
+                task_results[direction] = round(acc, 2)
+
+        if task_results:
+            results[task["name"]] = task_results
+            print(f"\n  {task['display']}:")
+            print(f"  {'Direction':<45} {'Accuracy':>10}")
+            print(f"  {'-'*45} {'-'*10}")
+            for direction, acc in task_results.items():
+                print(f"  {direction:<45} {acc:>9.2f}%")
 
     return results
 
@@ -140,7 +203,7 @@ def evaluate_clsd(model):
 # STS Evaluation
 # ---------------------------------------------------------------------------
 def sts_spearman(model, csv_path, col_a, col_b):
-    """Compute Spearman correlation between cosine similarity and gold scores."""
+    """Compute Spearman correlation (×100) between cosine similarity and gold scores."""
     df = pd.read_csv(csv_path).dropna(subset=[col_a, col_b, "similarity_score"])
     sents_a = df[col_a].astype(str).tolist()
     sents_b = df[col_b].astype(str).tolist()
@@ -149,9 +212,9 @@ def sts_spearman(model, csv_path, col_a, col_b):
     emb_a = model.encode(sents_a, convert_to_tensor=True, show_progress_bar=False)
     emb_b = model.encode(sents_b, convert_to_tensor=True, show_progress_bar=False)
 
-    cos_scores = torch.nn.functional.cosine_similarity(emb_a, emb_b).cpu().numpy()
+    cos_scores = st_util.cos_sim(emb_a, emb_b).diag().cpu().numpy()
     corr, _ = spearmanr(cos_scores, gold)
-    return corr
+    return corr * 100
 
 
 def evaluate_sts(model):
