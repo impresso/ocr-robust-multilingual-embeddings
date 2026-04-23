@@ -8,9 +8,8 @@ OCR-degraded versions of the clean CLSD files from [`clean_evaluation_datasets/A
 Generated using the three-step pipeline from Michail et al. (2025b): (S1) print the text under
 realistic conditions, (S2) apply visual degradations, (S3) re-digitize with Tesseract.
 
-Each file shares the same column structure as the clean CLSD files
-(excluding `deu_04` and `fra_04`, which only appear in the clean files):
-`fra`, `deu` (gold translations), `de_adv1`–`de_adv4` (German distractors), `fr_adv1`–`fr_adv4` (French distractors).
+Each file shares the same column structure as the clean CLSD files:
+`fra`, `deu` (gold translations), `deu_04` (DE noised ~4% CER), `de_adv1`–`de_adv4` (German distractors), `fra_04` (FR noised ~4% CER), `fr_adv1`–`fr_adv4` (French distractors).
 Every column (gold + all distractors) has been OCR-degraded.
 
 | File | Source dataset | Noise type | Avg. CER |
