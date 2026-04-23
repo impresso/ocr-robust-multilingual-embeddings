@@ -8,17 +8,19 @@ OCR-degraded versions of the clean CLSD files from [`clean_evaluation_datasets/A
 Generated using the three-step pipeline from Michail et al. (2025b): (S1) print the text under
 realistic conditions, (S2) apply visual degradations, (S3) re-digitize with Tesseract.
 
-Each file shares the same column structure as the clean CLSD files:
-`German`, `French`, `de_adv1`–`de_adv4`, `fr_adv1`–`fr_adv4`.
+Each file shares the same column structure as the clean CLSD files
+(excluding `deu_04` and `fra_04`, which only appear in the clean files):
+`fra`, `deu` (gold translations), `de_adv1`–`de_adv4` (German distractors), `fr_adv1`–`fr_adv4` (French distractors).
+Every column (gold + all distractors) has been OCR-degraded.
 
 | File | Source dataset | Noise type | Avg. CER |
 |------|---------------|------------|----------|
-| `CLSD_WMT19_MN_noise.csv` | WMT19 DE–FR | Minimal Noise (MN) | DE: 0.4%, FR: 0.6% |
-| `CLSD_WMT21_MN_noise.csv` | WMT21 DE–FR | Minimal Noise (MN) | DE: 0.4%, FR: 0.6% |
+| `CLSD_WMT19_MN_noise.csv` | WMT19 DE–FR | Minimal Noise (MN) | DE: 0.4%, FR: 0.7% |
+| `CLSD_WMT21_MN_noise.csv` | WMT21 DE–FR | Minimal Noise (MN) | DE: 0.4%, FR: 0.7% |
 | `CLSD_WMT19_BLDS_noise.csv` | WMT19 DE–FR | Blackletter / Scanned Distorted (BL/SD) | DE: 2.8%, FR: 2.4% |
-| `CLSD_WMT21_BLDS_noise.csv` | WMT21 DE–FR | Blackletter / Scanned Distorted (BL/SD) | DE: 2.8%, FR: 2.4% |
-| `CLSD_WMT19_SNP_noise.csv` | WMT19 DE–FR | Salt-and-Pepper (SnP) | DE: 5.4%, FR: 5.1% |
-| `CLSD_WMT21_SNP_noise.csv` | WMT21 DE–FR | Salt-and-Pepper (SnP) | DE: 5.4%, FR: 5.1% |
+| `CLSD_WMT21_BLDS_noise.csv` | WMT21 DE–FR | Blackletter / Scanned Distorted (BL/SD) | DE: 2.6%, FR: 2.8% |
+| `CLSD_WMT19_SNP_noise.csv` | WMT19 DE–FR | Salt-and-Pepper (SnP) | DE: 5.8%, FR: 5.3% |
+| `CLSD_WMT21_SNP_noise.csv` | WMT21 DE–FR | Salt-and-Pepper (SnP) | DE: 5.6%, FR: 5.4% |
 
 ### Noise conditions
 
