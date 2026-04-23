@@ -9,7 +9,7 @@ Generated using the three-step pipeline from Michail et al. (2025b): (S1) print 
 realistic conditions, (S2) apply visual degradations, (S3) re-digitize with Tesseract.
 
 Each file shares the same column structure as the clean CLSD files:
-`fra`, `deu` (gold translations), `deu_04`, `de_adv2`–`de_adv4` (German distractors), `fra_04`, `fr_adv2`–`fr_adv4` (French distractors).
+`French`, `German` (gold translations), `de_adv1`–`de_adv4` (German distractors), `fr_adv1`–`fr_adv4` (French distractors).
 Every column (gold + all distractors) has been OCR-degraded.
 
 | File | Source dataset | Noise type | Avg. CER |

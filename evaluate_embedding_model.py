@@ -48,8 +48,8 @@ CLEAN_EVAL_DIR = "clean_evaluation_datasets/ACL"
 NOISY_EVAL_DIR = "noisy_evaluation_datasets/ACL"
 
 CLSD_VERSIONS = {
-    "deu": ["fra", "fra_04", "fr_adv2", "fr_adv3", "fr_adv4"],
-    "fra": ["deu", "deu_04", "de_adv2", "de_adv3", "de_adv4"],
+    "German": ["French", "fr_adv1", "fr_adv2", "fr_adv3", "fr_adv4"],
+    "French": ["German", "de_adv1", "de_adv2", "de_adv3", "de_adv4"],
 }
 
 CLSD_TASKS = [
@@ -179,8 +179,8 @@ def evaluate_clsd(model):
                 if not all(v in right_df.columns for v in versions):
                     continue
 
-                left_lang = "DE" if main_col == "deu" else "FR"
-                right_lang = "FR" if main_col == "deu" else "DE"
+                left_lang = "DE" if main_col == "German" else "FR"
+                right_lang = "FR" if main_col == "German" else "DE"
                 direction = f"{left_lang}_{left_level}->{right_lang}_{right_level}"
 
                 acc = compare_languages(
