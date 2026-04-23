@@ -13,7 +13,7 @@ Built from the WMT19 and WMT21 DE–FR news test sets.
 
 | File | Source dataset | Columns |
 |------|---------------|---------|
-| `CLSD_wmt2019_adversarial_dataset.csv` | WMT19 DE–FR | `fra`, `deu` (gold), `deu_04` (DE noised ~4% CER), `de_adv1`–`de_adv4` (DE distractors), `fra_04` (FR noised ~4% CER), `fr_adv1`–`fr_adv4` (FR distractors) |
+| `CLSD_wmt2019_adversarial_dataset.csv` | WMT19 DE–FR | `fra`, `deu` (gold), `de_adv1`–`de_adv4` (DE distractors), `fr_adv1`–`fr_adv4` (FR distractors) |
 | `CLSD_wmt2021_adversarial_dataset.csv` | WMT21 DE–FR | same columns |
 
 
