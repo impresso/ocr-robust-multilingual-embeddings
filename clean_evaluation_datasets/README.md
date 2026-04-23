@@ -7,14 +7,14 @@
 The Cross-Lingual Semantic Discrimination (CLSD) benchmark introduced by Michail et al. (2025a).
 Each row contains a source sentence, its correct translation, and four semantically similar
 distractor sentences in the target language. The model must rank the correct translation
-higher than all distractors. Performance is reported as Precision@1.
+higher than all distractors. Performance is reported as accuracy (%).
 
 Built from the WMT19 and WMT21 DE–FR news test sets.
 
 | File | Source dataset | Columns |
 |------|---------------|---------|
-| `CLSD_wmt2019_adversarial_dataset.csv` | WMT19 DE–FR | `German`, `French`, `de_adv1`–`de_adv4`, `fr_adv1`–`fr_adv4` |
-| `CLSD_wmt2021_adversarial_dataset.csv` | WMT21 DE–FR | `German`, `French`, `de_adv1`–`de_adv4`, `fr_adv1`–`fr_adv4` |
+| `CLSD_wmt2019_adversarial_dataset.csv` | WMT19 DE–FR | `fra`, `deu` (gold), `deu_04`, `de_adv2`–`de_adv4` (DE distractors), `fra_04`, `fr_adv2`–`fr_adv4` (FR distractors) |
+| `CLSD_wmt2021_adversarial_dataset.csv` | WMT21 DE–FR | same columns as above |
 
 
 ---
@@ -28,8 +28,8 @@ as Spearman correlation (×100) between model cosine scores and human similarity
 
 | File | Language pair | Columns |
 |------|--------------|---------|
-| `sts17_ar-en.csv` | Arabic–English | `ar`, `en`, `similarity_score` |
-| `sts17_en-es.csv` | English–Spanish | `en`, `es`, `similarity_score` |
-| `sts17_es-en.csv` | Spanish–English | `es`, `en`, `similarity_score` |
-| `sts17_tr-en.csv` | Turkish–English | `tr`, `en`, `similarity_score` |
+| `sts17_ar-en.csv` | Arabic–English | `eng`, `ara`, `similarity_score` |
+| `sts17_en-es.csv` | English–Spanish | `eng`, `spa`, `similarity_score` |
+| `sts17_es-en.csv` | Spanish–English | `spa`, `eng`, `similarity_score` |
+| `sts17_tr-en.csv` | Turkish–English | `eng`, `tur`, `similarity_score` |
 
